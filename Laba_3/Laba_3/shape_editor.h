@@ -1,6 +1,8 @@
 #pragma once
 class ShapeObjectEditor
 {
+	int curr_length = 0,
+		max_legth = 106;
 	public:
 		ShapeObjectEditor(void);
 		~ShapeObjectEditor();
