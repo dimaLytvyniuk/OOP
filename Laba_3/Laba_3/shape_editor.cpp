@@ -65,13 +65,20 @@ void ShapeObjectEditor::OnMosuseMove(HWND hWnd)
 		pse->OnMosuseMove(hWnd);
 }
 
-void ShapeObjectEditor::OnPaint(HWND)
+void ShapeObjectEditor::OnPaint(HWND hWnd)
 {
-
+	if (pse)
+		pse->OnPaint(hWnd);
 }
 
-void ShapeObjectEditor::OninitMenuPopup(HWND, WPARAM)
+void ShapeObjectEditor::OninitMenuPopup(HWND hWnd, WPARAM hWparam)
 {
-
+	if (pse)
+		pse->OnInitMenuPopup(hWnd, hWparam);
+	else
+	{
+		//ShapeEditor shp;
+		//shp.OnInitMenuPopup(hWnd,hWparam);
+	}
 }
 

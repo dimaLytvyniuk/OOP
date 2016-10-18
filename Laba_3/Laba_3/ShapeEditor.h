@@ -17,12 +17,14 @@ protected:
 	int xstart, ystart, xend, yend;
 	static int curr_length;
 	static Shape **pcshape;
+	POINT pt_old;
+	POINT pt_start;
 public:
 	ShapeEditor(void);
     void OnLBdown(HWND);
 	void OnLBup(HWND);
 	void OnMosuseMove(HWND);
 	void OnPaint(HWND);
-	void OnInitMenuPopup(HWND, WPARAM);
+	virtual void OnInitMenuPopup(HWND, WPARAM) = 0;
 };
 #endif !defined(SHAPEDITOR_H)

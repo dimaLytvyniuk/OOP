@@ -8,7 +8,7 @@ public:
 	~EllipseEditor();
 	void OnLBup(HWND);
 	void OnMosuseMove(HWND);
-	void OnPaint(HWND);
+	//void OnPaint(HWND);
 	void OnInitMenuPopup(HWND, WPARAM);
 };
 

@@ -1,6 +1,8 @@
 #pragma once
 #if !defined(EDITOR_H)
 #define EDITOR_H
+#include "Resource.h"
+
 class Editor
 {
 public:
