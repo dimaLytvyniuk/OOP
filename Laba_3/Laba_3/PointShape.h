@@ -6,6 +6,7 @@ class PointShape :
 public:
 	PointShape();
 	~PointShape();
-	COLORREF WINAPI SetPixel(HDC hdc, int x, int y, COLORREF color);
+	//COLORREF WINAPI SetPixel(HDC hdc, int x, int y, COLORREF color);
+	void Show(HDC);
 };
 

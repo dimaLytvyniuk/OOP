@@ -1,8 +1,14 @@
 #pragma once
+#include "EllipseEditor.h"
+#include "LineEditor.h""
+#include "PointEditor.h"
+#include "RectEditor.h"
+
 class ShapeObjectEditor
 {
-	int curr_length = 0,
-		max_legth = 106;
+	ShapeEditor *pse = NULL;
+	bool onLBdown = false,
+		onLBup = false;
 	public:
 		ShapeObjectEditor(void);
 		~ShapeObjectEditor();

@@ -6,5 +6,9 @@ class EllipseEditor :
 public:
 	EllipseEditor();
 	~EllipseEditor();
+	void OnLBup(HWND);
+	void OnMosuseMove(HWND);
+	void OnPaint(HWND);
+	void OnInitMenuPopup(HWND, WPARAM);
 };
 

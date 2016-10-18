@@ -11,7 +11,7 @@ RectShape::~RectShape()
 {
 }
 
-RectShape::BOOL WINAPI Rectangle(HDC hdc, int x1, int y1, int x2, int y2)
+void RectShape::Show(HDC hdc)
 {
-
+	Rectangle(hdc, xs1, ys1, xs2,ys2);
 }
