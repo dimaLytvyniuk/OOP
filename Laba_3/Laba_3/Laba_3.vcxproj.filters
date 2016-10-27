@@ -13,6 +13,18 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Файлы исходного кода\Editors">
+      <UniqueIdentifier>{5aa2f46c-6c4e-4a4b-a4ba-6adea775d6e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы исходного кода\Shapes">
+      <UniqueIdentifier>{a3b8d5e5-d2ae-4e8f-b777-7ccd7955ed9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Заголовочные файлы\Shapes">
+      <UniqueIdentifier>{77236111-0936-4cff-84b8-08f2e556031a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Заголовочные файлы\Editors">
+      <UniqueIdentifier>{bd51aaa8-c36d-47b6-a2b4-e098c18823bd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -36,38 +48,38 @@
     <ClInclude Include="shape_editor.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
-    <ClInclude Include="Shape.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="PointShape.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="LineShape.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="RectShape.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="EllipseShape.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
     <ClInclude Include="Editor.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="ShapeEditor.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="PointEditor.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="LineEditor.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="RectEditor.h">
-      <Filter>Заголовочные файлы</Filter>
+      <Filter>Заголовочные файлы\Editors</Filter>
     </ClInclude>
     <ClInclude Include="EllipseEditor.h">
-      <Filter>Заголовочные файлы</Filter>
+      <Filter>Заголовочные файлы\Editors</Filter>
+    </ClInclude>
+    <ClInclude Include="LineEditor.h">
+      <Filter>Заголовочные файлы\Editors</Filter>
+    </ClInclude>
+    <ClInclude Include="PointEditor.h">
+      <Filter>Заголовочные файлы\Editors</Filter>
+    </ClInclude>
+    <ClInclude Include="RectEditor.h">
+      <Filter>Заголовочные файлы\Editors</Filter>
+    </ClInclude>
+    <ClInclude Include="ShapeEditor.h">
+      <Filter>Заголовочные файлы\Editors</Filter>
+    </ClInclude>
+    <ClInclude Include="EllipseShape.h">
+      <Filter>Заголовочные файлы\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="LineShape.h">
+      <Filter>Заголовочные файлы\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="PointShape.h">
+      <Filter>Заголовочные файлы\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="RectShape.h">
+      <Filter>Заголовочные файлы\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape.h">
+      <Filter>Заголовочные файлы\Shapes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -80,38 +92,38 @@
     <ClCompile Include="shape_editor.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="Shape.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="PointShape.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="LineShape.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="RectShape.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="EllipseShape.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
-    <ClCompile Include="Editor.cpp">
-      <Filter>Файлы исходного кода</Filter>
-    </ClCompile>
     <ClCompile Include="ShapeEditor.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="PointEditor.cpp">
-      <Filter>Файлы исходного кода</Filter>
+    <ClCompile Include="LineShape.cpp">
+      <Filter>Файлы исходного кода\Shapes</Filter>
     </ClCompile>
-    <ClCompile Include="LineEditor.cpp">
-      <Filter>Файлы исходного кода</Filter>
+    <ClCompile Include="EllipseShape.cpp">
+      <Filter>Файлы исходного кода\Shapes</Filter>
     </ClCompile>
-    <ClCompile Include="RectEditor.cpp">
-      <Filter>Файлы исходного кода</Filter>
+    <ClCompile Include="PointShape.cpp">
+      <Filter>Файлы исходного кода\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="RectShape.cpp">
+      <Filter>Файлы исходного кода\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="Shape.cpp">
+      <Filter>Файлы исходного кода\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="Editor.cpp">
+      <Filter>Файлы исходного кода\Editors</Filter>
     </ClCompile>
     <ClCompile Include="EllipseEditor.cpp">
-      <Filter>Файлы исходного кода</Filter>
+      <Filter>Файлы исходного кода\Editors</Filter>
+    </ClCompile>
+    <ClCompile Include="LineEditor.cpp">
+      <Filter>Файлы исходного кода\Editors</Filter>
+    </ClCompile>
+    <ClCompile Include="PointEditor.cpp">
+      <Filter>Файлы исходного кода\Editors</Filter>
+    </ClCompile>
+    <ClCompile Include="RectEditor.cpp">
+      <Filter>Файлы исходного кода\Editors</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -129,5 +141,8 @@
     <Image Include="Laba_3.ico">
       <Filter>Файлы ресурсов</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

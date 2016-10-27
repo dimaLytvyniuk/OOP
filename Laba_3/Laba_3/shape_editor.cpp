@@ -75,10 +75,5 @@ void ShapeObjectEditor::OninitMenuPopup(HWND hWnd, WPARAM hWparam)
 {
 	if (pse)
 		pse->OnInitMenuPopup(hWnd, hWparam);
-	else
-	{
-		//ShapeEditor shp;
-		//shp.OnInitMenuPopup(hWnd,hWparam);
-	}
 }
 
