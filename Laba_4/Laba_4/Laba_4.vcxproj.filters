@@ -78,6 +78,9 @@
     <ClInclude Include="EllipseShape.h">
       <Filter>Заголовочные файлы\Shape</Filter>
     </ClInclude>
+    <ClInclude Include="ToolBar.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
