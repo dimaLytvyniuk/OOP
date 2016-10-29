@@ -14,7 +14,7 @@ class ShapeEditor :
 	public Editor
 {
 protected:
-	int xstart, ystart, xend, yend;
+	//int xstart, ystart, xend, yend;
 	static int curr_length;
 	static Shape **pcshape;
 	POINT pt_old;
