@@ -59,3 +59,11 @@ void EllipseEditor::OnInitMenuPopup(HWND hWnd, WPARAM wParam)
 	}
 
 }
+
+void EllipseEditor::PressButton(HWND hWnd)
+{
+	SendMessage(hWnd, TB_PRESSBUTTON, IDB_POINT, false);
+	SendMessage(hWnd, TB_PRESSBUTTON, IDB_LINE, false);
+	SendMessage(hWnd, TB_PRESSBUTTON, IDB_RECT, false);
+	SendMessage(hWnd, TB_PRESSBUTTON, IDB_ELLIPSE, true);
+}

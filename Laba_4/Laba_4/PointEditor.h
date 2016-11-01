@@ -1,6 +1,6 @@
 #pragma once
-#include "ShapeEditor.h"
 
+#include "ShapeEditor.h"
 class PointEditor :
 	public ShapeEditor
 {
@@ -10,5 +10,6 @@ public:
 	void OnLBup(HWND);
 	void OnMosuseMove(HWND);
 	void OnInitMenuPopup(HWND, WPARAM);
+	void PressButton(HWND);
 };
 

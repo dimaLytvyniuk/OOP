@@ -9,6 +9,7 @@
 #include "LineShape.h"
 #include "PointShape.h"
 #include "RectShape.h"
+#include "ToolBar.h"
 
 class ShapeEditor : 
 	public Editor
@@ -26,5 +27,6 @@ public:
 	void OnMosuseMove(HWND);
 	void OnPaint(HWND);
 	virtual void OnInitMenuPopup(HWND, WPARAM) = 0;
+	virtual void PressButton(HWND) = 0;
 };
 #endif !defined(SHAPEDITOR_H)

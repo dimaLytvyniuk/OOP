@@ -21,6 +21,6 @@ class ShapeObjectEditor
 		void OnMosuseMove(HWND);
 		void OnPaint(HWND);
 		void OninitMenuPopup(HWND, WPARAM);
-
+		void PressButton(HWND);
 };
 

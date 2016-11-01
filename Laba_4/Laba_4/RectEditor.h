@@ -10,5 +10,6 @@ public:
 	void OnMosuseMove(HWND);
 	//void OnPaint(HWND);
 	void OnInitMenuPopup(HWND, WPARAM);
+	void PressButton(HWND);
 };
 

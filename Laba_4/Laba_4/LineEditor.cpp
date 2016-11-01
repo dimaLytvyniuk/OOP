@@ -63,3 +63,10 @@ void LineEditor::OnInitMenuPopup(HWND hWnd, WPARAM wParam)
 	}
 }
 
+void LineEditor::PressButton(HWND hWnd)
+{
+	SendMessage(hWnd, TB_PRESSBUTTON, IDB_POINT, false);
+	SendMessage(hWnd, TB_PRESSBUTTON, IDB_LINE, true);
+	SendMessage(hWnd, TB_PRESSBUTTON, IDB_RECT, false);
+	SendMessage(hWnd, TB_PRESSBUTTON, IDB_ELLIPSE, false);
+}

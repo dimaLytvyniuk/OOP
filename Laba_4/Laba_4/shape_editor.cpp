@@ -77,3 +77,8 @@ void ShapeObjectEditor::OninitMenuPopup(HWND hWnd, WPARAM hWparam)
 		pse->OnInitMenuPopup(hWnd, hWparam);
 }
 
+void ShapeObjectEditor::PressButton(HWND hWnd)
+{
+	if (pse)
+		pse->PressButton(hWnd);
+}

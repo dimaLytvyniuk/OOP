@@ -45,3 +45,11 @@ void PointEditor::OnInitMenuPopup(HWND hWnd, WPARAM wParam)
 		CheckMenuItem(hSubMenu, IDM_ELLIPSE, MF_UNCHECKED); //позначити цей пункт
 	}
 }
+
+void PointEditor::PressButton(HWND hWnd)
+{
+	SendMessage(hWnd, TB_PRESSBUTTON, IDB_POINT, true);
+	SendMessage(hWnd, TB_PRESSBUTTON, IDB_LINE, false);
+	SendMessage(hWnd, TB_PRESSBUTTON, IDB_RECT, false);
+	SendMessage(hWnd, TB_PRESSBUTTON, IDB_ELLIPSE, false);
+}
