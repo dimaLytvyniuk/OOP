@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Файлы исходного кода">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Заголовочные файлы">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Файлы ресурсов">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Заголовочные файлы\Editors">
+      <UniqueIdentifier>{4278ef5a-864f-42c5-bb11-df4e78d6d7f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Заголовочные файлы\Shapes">
+      <UniqueIdentifier>{cf3ee7cc-026f-4272-a20a-f5ebe129819d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы исходного кода\Shapes">
+      <UniqueIdentifier>{7b367b86-c4fc-4317-b65b-6d9df77f7566}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы исходного кода\Editors">
+      <UniqueIdentifier>{90038d0b-cb6c-4b73-8be2-f2d9e9a33da1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="Cursach.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="shape_editor.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="ToolBar.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="CubeEditor.h">
+      <Filter>Заголовочные файлы\Editors</Filter>
+    </ClInclude>
+    <ClInclude Include="CubeShape.h">
+      <Filter>Заголовочные файлы\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="Editor.h">
+      <Filter>Заголовочные файлы\Editors</Filter>
+    </ClInclude>
+    <ClInclude Include="EllipseEditor.h">
+      <Filter>Заголовочные файлы\Editors</Filter>
+    </ClInclude>
+    <ClInclude Include="EllipseShape.h">
+      <Filter>Заголовочные файлы\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="LineEditor.h">
+      <Filter>Заголовочные файлы\Editors</Filter>
+    </ClInclude>
+    <ClInclude Include="LineShape.h">
+      <Filter>Заголовочные файлы\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="RectEditor.h">
+      <Filter>Заголовочные файлы\Editors</Filter>
+    </ClInclude>
+    <ClInclude Include="RectShape.h">
+      <Filter>Заголовочные файлы\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape.h">
+      <Filter>Заголовочные файлы\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="ShapeEditor.h">
+      <Filter>Заголовочные файлы\Editors</Filter>
+    </ClInclude>
+    <ClInclude Include="PuncktLineShape.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="PuncktLineEditor.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="Cursach.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="shape_editor.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="ToolBar.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="CubeEditor.cpp">
+      <Filter>Файлы исходного кода\Editors</Filter>
+    </ClCompile>
+    <ClCompile Include="CubeShape.cpp">
+      <Filter>Файлы исходного кода\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="Editor.cpp">
+      <Filter>Файлы исходного кода\Editors</Filter>
+    </ClCompile>
+    <ClCompile Include="EllipseEditor.cpp">
+      <Filter>Файлы исходного кода\Editors</Filter>
+    </ClCompile>
+    <ClCompile Include="EllipseShape.cpp">
+      <Filter>Файлы исходного кода\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="LineEditor.cpp">
+      <Filter>Файлы исходного кода\Editors</Filter>
+    </ClCompile>
+    <ClCompile Include="LineShape.cpp">
+      <Filter>Файлы исходного кода\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="RectEditor.cpp">
+      <Filter>Файлы исходного кода\Editors</Filter>
+    </ClCompile>
+    <ClCompile Include="RectShape.cpp">
+      <Filter>Файлы исходного кода\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="Shape.cpp">
+      <Filter>Файлы исходного кода\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="ShapeEditor.cpp">
+      <Filter>Файлы исходного кода\Editors</Filter>
+    </ClCompile>
+    <ClCompile Include="PuncktLineShape.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="PuncktLineEditor.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Cursach.rc">
+      <Filter>Файлы ресурсов</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="small.ico">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="Cursach.ico">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="bitmap1.bmp">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
