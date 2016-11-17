@@ -13,4 +13,5 @@
 #define IDB_LINEOO						   1009
 #define IDB_CUBE						   1010
 #define IDB_PUNCKT						   1011
+#define IDB_ROMB						   1012
 #endif !defined(TOOL_H)

@@ -1,12 +1,11 @@
 #pragma once
 #include "Shape.h"
-
-class CubeShape :
+class CilinderShape :
 	public Shape
 {
 public:
-	CubeShape();
-	~CubeShape();
+	CilinderShape();
+	~CilinderShape();
 	void Show(HDC);
 };
 

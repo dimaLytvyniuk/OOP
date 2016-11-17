@@ -1,7 +1,7 @@
 #pragma once
-#include "RectEditor.h"
+#include "ShapeEditor.h"
 class CubeEditor :
-	public RectEditor
+	public ShapeEditor
 {
 public:
 	CubeEditor();

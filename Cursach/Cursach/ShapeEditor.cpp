@@ -15,7 +15,12 @@ void ShapeEditor::OnPaint(HWND hWnd)
 	
 	PAINTSTRUCT ps;
 	HDC hdc;
+	HBRUSH hBrush, hBrushOld;
+
 	hdc = BeginPaint(hWnd, &ps);
+	hBrush = (HBRUSH)CreateSolidBrush(RGB(0, 255, 0));
+	hBrushOld = (HBRUSH)SelectObject(hdc, hBrush);
+
 	for (int i = 0; i < curr_length; i++)
 	{
 		if (pcshape[i])
@@ -23,7 +28,9 @@ void ShapeEditor::OnPaint(HWND hWnd)
 		
 	}
 	EndPaint(hWnd, &ps);
-	
+
+	SelectObject(hdc, hBrushOld);
+	DeleteObject(hBrush);
 }
 
 void ShapeEditor::OnLBdown(HWND hWnd)

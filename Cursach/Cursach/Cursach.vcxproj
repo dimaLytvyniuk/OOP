@@ -146,6 +146,8 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CilinderEditor.h" />
+    <ClInclude Include="CilinderShape.h" />
     <ClInclude Include="CubeEditor.h" />
     <ClInclude Include="CubeShape.h" />
     <ClInclude Include="Cursach.h" />
@@ -159,6 +161,8 @@
     <ClInclude Include="RectEditor.h" />
     <ClInclude Include="RectShape.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="RombEditor.h" />
+    <ClInclude Include="RombShape.h" />
     <ClInclude Include="Shape.h" />
     <ClInclude Include="ShapeEditor.h" />
     <ClInclude Include="shape_editor.h" />
@@ -167,6 +171,8 @@
     <ClInclude Include="ToolBar.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CilinderEditor.cpp" />
+    <ClCompile Include="CilinderShape.cpp" />
     <ClCompile Include="CubeEditor.cpp" />
     <ClCompile Include="CubeShape.cpp" />
     <ClCompile Include="Cursach.cpp" />
@@ -179,6 +185,8 @@
     <ClCompile Include="PuncktLineShape.cpp" />
     <ClCompile Include="RectEditor.cpp" />
     <ClCompile Include="RectShape.cpp" />
+    <ClCompile Include="RombEditor.cpp" />
+    <ClCompile Include="RombShape.cpp" />
     <ClCompile Include="Shape.cpp" />
     <ClCompile Include="ShapeEditor.cpp" />
     <ClCompile Include="shape_editor.cpp" />

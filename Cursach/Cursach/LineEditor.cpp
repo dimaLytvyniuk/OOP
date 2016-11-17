@@ -58,18 +58,18 @@ void LineEditor::OnInitMenuPopup(HWND hWnd, WPARAM wParam)
 	hSubMenu = GetSubMenu(hMenu, 1); //POPUP-меню Об'єкти
 	if ((HMENU)wParam == hSubMenu)
 	{
-		//CheckMenuItem(hSubMenu, IDM_POINT, MF_UNCHECKED); //зняти позначку
+		CheckMenuItem(hSubMenu, IDM_ROMB, MF_UNCHECKED);
 		CheckMenuItem(hSubMenu, IDM_LINE, MF_CHECKED);
 		CheckMenuItem(hSubMenu, IDM_RECT, MF_UNCHECKED);
 		CheckMenuItem(hSubMenu, IDM_ELLIPSE, MF_UNCHECKED); //позначити цей пункт
 		CheckMenuItem(hSubMenu, IDM_CUBE, MF_UNCHECKED);
-		//CheckMenuItem(hSubMenu, IDM_LINEOO, MF_UNCHECKED);
+		CheckMenuItem(hSubMenu, IDM_CILINDER, MF_UNCHECKED);
 	}
 }
 
 void LineEditor::PressButton(HWND hWnd)
 {
-	//SendMessage(hWnd, TB_PRESSBUTTON, IDB_POINT, false);
+	SendMessage(hWnd, TB_PRESSBUTTON, IDB_ROMB, false);
 	SendMessage(hWnd, TB_PRESSBUTTON, IDB_LINE, true);
 	SendMessage(hWnd, TB_PRESSBUTTON, IDB_RECT, false);
 	SendMessage(hWnd, TB_PRESSBUTTON, IDB_ELLIPSE, false);

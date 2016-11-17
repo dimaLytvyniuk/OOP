@@ -11,6 +11,8 @@
 #include "ToolBar.h"
 #include "CubeShape.h"
 #include "PuncktLineShape.h"
+#include "RombShape.h"
+#include "CilinderShape.h"
 
 class ShapeEditor : 
 	public Editor

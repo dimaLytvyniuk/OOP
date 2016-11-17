@@ -87,6 +87,18 @@
     <ClInclude Include="PuncktLineEditor.h">
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
+    <ClInclude Include="RombShape.h">
+      <Filter>Заголовочные файлы\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="RombEditor.h">
+      <Filter>Заголовочные файлы\Editors</Filter>
+    </ClInclude>
+    <ClInclude Include="CilinderShape.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="CilinderEditor.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -134,11 +146,23 @@
     <ClCompile Include="ShapeEditor.cpp">
       <Filter>Файлы исходного кода\Editors</Filter>
     </ClCompile>
-    <ClCompile Include="PuncktLineShape.cpp">
-      <Filter>Файлы исходного кода</Filter>
+    <ClCompile Include="RombShape.cpp">
+      <Filter>Файлы исходного кода\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="RombEditor.cpp">
+      <Filter>Файлы исходного кода\Editors</Filter>
+    </ClCompile>
+    <ClCompile Include="CilinderShape.cpp">
+      <Filter>Файлы исходного кода\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="CilinderEditor.cpp">
+      <Filter>Файлы исходного кода\Editors</Filter>
     </ClCompile>
     <ClCompile Include="PuncktLineEditor.cpp">
-      <Filter>Файлы исходного кода</Filter>
+      <Filter>Файлы исходного кода\Editors</Filter>
+    </ClCompile>
+    <ClCompile Include="PuncktLineShape.cpp">
+      <Filter>Файлы исходного кода\Shapes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

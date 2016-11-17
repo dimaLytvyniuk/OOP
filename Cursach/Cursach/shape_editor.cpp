@@ -11,9 +11,11 @@ ShapeObjectEditor:: ~ShapeObjectEditor()
 
 }
 
-void ShapeObjectEditor:: StartPointEditor()
+void ShapeObjectEditor:: StartRombEditor()
 {
-
+	if (pse)
+		delete pse;
+	pse = new RombEditor();
 }
 
 void ShapeObjectEditor::StartLineEditor()
@@ -27,6 +29,13 @@ void ShapeObjectEditor::StartPuncktLineEditor()
 	if (pse)
 		delete pse;
 	pse = new PuncktLineEditor();
+}
+
+void ShapeObjectEditor::StartCilinderEditor()
+{
+	if (pse)
+		delete pse;
+	pse = new CilinderEditor();
 }
 
 void ShapeObjectEditor::StartCubeEditor()

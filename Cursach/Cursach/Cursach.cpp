@@ -13,7 +13,7 @@ TBBUTTON tbb_1[] = {
 	{ 2, IDB_LINE, TBSTATE_ENABLED, TBSTYLE_BUTTON, 0, 0, 0, 0 },
 	{ 3, IDB_CUBE, TBSTATE_ENABLED, TBSTYLE_BUTTON, 0, 0, 0, 0 },
 	{ 4, IDB_PUNCKT, TBSTATE_ENABLED, TBSTYLE_BUTTON, 0, 0, 0, 0 },
-	//{ 5, IDB_LINEOO, TBSTATE_ENABLED, TBSTYLE_BUTTON, 0, 0, 0, 0 },
+	{ 5, IDB_ROMB, TBSTATE_ENABLED, TBSTYLE_BUTTON, 0, 0, 0, 0 },
 };
 
 // Глобальные переменные:
@@ -141,8 +141,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     switch (message)
     {
 	case WM_CREATE:
-		hWndToolBar = CreateToolbarEx(hWnd, TBSTYLE_TOOLTIPS | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_CLIPSIBLINGS | CCS_TOP, 1, 5,
-	    hInst, IDB_BITMAP1, tbb_1, 5, 25, 25, 25, 25, sizeof(TBBUTTON));
+		hWndToolBar = CreateToolbarEx(hWnd, TBSTYLE_TOOLTIPS | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_CLIPSIBLINGS | CCS_TOP, 1, 6,
+	    hInst, IDB_BITMAP1, tbb_1, 6, 25, 25, 25, 25, sizeof(TBBUTTON));
 		break;
 	case WM_SIZE:
 		OnSize(hWnd, hWndToolBar);
@@ -213,16 +213,16 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 				obj_editor.StartLineEditor();
 				obj_editor.PressButton(hWndToolBar);
 				break;
-			case IDB_POINT:
-				obj_editor.StartPointEditor();
-				obj_editor.PressButton(hWndToolBar);
-				break;
 			case IDB_CUBE:
 				obj_editor.StartCubeEditor();
 				obj_editor.PressButton(hWndToolBar);
 				break;
 			case IDB_PUNCKT:
 				obj_editor.StartPuncktLineEditor();
+				obj_editor.PressButton(hWndToolBar);
+				break;
+			case IDB_ROMB:
+				obj_editor.StartRombEditor();
 				obj_editor.PressButton(hWndToolBar);
 				break;
 			case IDM_LINE:
@@ -243,6 +243,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 				break;
 			case IDM_PUNKT:
 				obj_editor.StartPuncktLineEditor();
+				obj_editor.PressButton(hWndToolBar);
+				break;
+			case IDM_ROMB:
+				obj_editor.StartRombEditor();
+				obj_editor.PressButton(hWndToolBar);
+				break;
+			case IDM_CILINDER:
+				obj_editor.StartCilinderEditor();
 				obj_editor.PressButton(hWndToolBar);
 				break;
             case IDM_ABOUT:

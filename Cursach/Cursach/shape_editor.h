@@ -4,6 +4,8 @@
 #include "RectEditor.h"
 #include "CubeEditor.h"
 #include "PuncktLineEditor.h"
+#include "RombEditor.h"
+#include "CilinderEditor.h"
 
 class ShapeObjectEditor
 {
@@ -13,12 +15,13 @@ class ShapeObjectEditor
 	public:
 		ShapeObjectEditor(void);
 		~ShapeObjectEditor();
-		void StartPointEditor();
+		void StartRombEditor();
 		void StartLineEditor();
 		void StartRectEditor();
 		void StartEllipseEditor();
 		void StartPuncktLineEditor();
 		void StartCubeEditor();
+		void StartCilinderEditor();
 		void OnLBdown(HWND);
 		void OnLBup(HWND);
 		void OnMosuseMove(HWND);
