@@ -143,6 +143,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <Text Include="data_types.txt" />
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>

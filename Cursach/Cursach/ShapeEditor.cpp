@@ -49,3 +49,10 @@ void ShapeEditor::OnMosuseMove(HWND)
 {
 
 }
+
+void ShapeEditor::PrintInFile(char * str,int x1, int y1, int x2, int y2)
+{
+	ofstream fout(name, ios_base::out | ios_base::app);
+	fout << str<<"\t" << x1 << "\t" << y1 << "\t" << x2 << " \t" << y2 << endl;
+	fout.close();
+}

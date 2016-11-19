@@ -18,8 +18,7 @@ void EllipseEditor::OnLBup(HWND hWnd)
 		POINT pt;
 		GetCursorPos(&pt);
 		ScreenToClient(hWnd, &pt);
-		ofstream fout("data_types.txt", ios_base::out | ios_base::app);
-		fout << "EllipseShape " << pt_start.x << "  " << pt_start.y << "  " << pt.x << "  " << pt.y << endl;
+		PrintInFile("Елліпс", pt_start.x, pt_start.y, pt.x, pt.y);
 		pcshape[curr_length] = new EllipseShape();
 		pcshape[curr_length]->Set(pt_start.x, pt_start.y, pt.x, pt.y);
 		curr_length++;
@@ -71,5 +70,5 @@ void EllipseEditor::PressButton(HWND hWnd)
 	SendMessage(hWnd, TB_PRESSBUTTON, IDB_RECT, false);
 	SendMessage(hWnd, TB_PRESSBUTTON, IDB_ELLIPSE, true);
 	SendMessage(hWnd, TB_PRESSBUTTON, IDB_CUBE, false);
-	//SendMessage(hWnd, TB_PRESSBUTTON, IDB_LINEOO, false);
+	SendMessage(hWnd, TB_PRESSBUTTON, IDB_CILINDER, false);
 }

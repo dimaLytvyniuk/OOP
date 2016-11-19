@@ -18,8 +18,7 @@ void CubeEditor::OnLBup(HWND hWnd)
 		POINT pt;
 		GetCursorPos(&pt);
 		ScreenToClient(hWnd, &pt);
-		ofstream fout("data_types.txt", ios_base::out | ios_base::app);
-		fout << "CubeShape " << pt_start.x << "  " << pt_start.y << "  " << pt.x << "  " << pt.y << endl;
+		PrintInFile("Êóá", pt_start.x, pt_start.y, pt.x, pt.y);
 		pcshape[curr_length] = new CubeShape();
 		pcshape[curr_length]->Set(pt_start.x, pt_start.y, pt_old.x, pt_old.y);
 		curr_length++;
@@ -98,5 +97,5 @@ void CubeEditor::PressButton(HWND hWnd)
 	SendMessage(hWnd, TB_PRESSBUTTON, IDB_RECT, false);
 	SendMessage(hWnd, TB_PRESSBUTTON, IDB_ELLIPSE, false);
 	SendMessage(hWnd, TB_PRESSBUTTON, IDB_CUBE, true);
-	//SendMessage(hWnd, TB_PRESSBUTTON, IDB_LINEOO, false);
+	SendMessage(hWnd, TB_PRESSBUTTON, IDB_CILINDER, false);
 }

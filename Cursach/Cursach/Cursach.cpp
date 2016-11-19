@@ -14,11 +14,12 @@ TBBUTTON tbb_1[] = {
 	{ 3, IDB_CUBE, TBSTATE_ENABLED, TBSTYLE_BUTTON, 0, 0, 0, 0 },
 	{ 4, IDB_PUNCKT, TBSTATE_ENABLED, TBSTYLE_BUTTON, 0, 0, 0, 0 },
 	{ 5, IDB_ROMB, TBSTATE_ENABLED, TBSTYLE_BUTTON, 0, 0, 0, 0 },
+	{ 6, IDB_CILINDER, TBSTATE_ENABLED, TBSTYLE_BUTTON, 0, 0, 0, 0 },
 };
 
 // Глобальные переменные:
 HINSTANCE hInst;                                // текущий экземпляр
-WCHAR szTitle[MAX_LOADSTRING];                  // Текст строки заголовка
+WCHAR szTitle[MAX_LOADSTRING];// Текст строки заголовка
 WCHAR szWindowClass[MAX_LOADSTRING];            // имя класса главного окна
 
 // Отправить объявления функций, включенных в этот модуль кода:
@@ -110,8 +111,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
    hInst = hInstance; // Сохранить дескриптор экземпляра в глобальной переменной
 
-   HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN,
-      CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
+   HWND hWnd = CreateWindowW(szWindowClass, LPCWSTR("Курсова робота"), WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN,
+      CW_USEDEFAULT, 0, 2000, 2000, nullptr, nullptr, hInstance, nullptr);
 
    if (!hWnd)
    {
@@ -120,6 +121,9 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
+
+   ofstream fout("data_types.txt", ios_base::out);
+   fout.close();
 
    return TRUE;
 }
@@ -141,8 +145,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     switch (message)
     {
 	case WM_CREATE:
-		hWndToolBar = CreateToolbarEx(hWnd, TBSTYLE_TOOLTIPS | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_CLIPSIBLINGS | CCS_TOP, 1, 6,
-	    hInst, IDB_BITMAP1, tbb_1, 6, 25, 25, 25, 25, sizeof(TBBUTTON));
+		hWndToolBar = CreateToolbarEx(hWnd, TBSTYLE_TOOLTIPS | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_CLIPSIBLINGS | CCS_TOP, 1, 7,
+	    hInst, IDB_BITMAP1, tbb_1, 7, 25, 25, 25, 25, sizeof(TBBUTTON));
 		break;
 	case WM_SIZE:
 		OnSize(hWnd, hWndToolBar);
@@ -157,23 +161,26 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			LPTOOLTIPTEXT lpttt = (LPTOOLTIPTEXT)lParam;
 			switch (lpttt->hdr.idFrom)
 			{
-			case IDB_POINT:
-				pText = "Point";
+			case IDB_ROMB:
+				pText = "Ромб";
 				break;
 			case IDB_LINE:
-				pText = "Line";
+				pText = "Лінія";
 				break;
 			case IDB_RECT:
-				pText = "Rectangle";
+				pText = "Прямокутник";
 				break;
 			case IDB_ELLIPSE:
-				pText = "Ellipse";
+				pText = "Елліпс";
 				break;
 			case IDB_CUBE:
-				pText = "Cube";
+				pText = "Куб";
 				break;
-			case IDB_LINEOO:
-				pText = "LineOO";
+			case IDB_CILINDER:
+				pText = "Циліндр";
+				break;
+			case IDB_PUNCKT:
+				pText = "Пунктирна лінія";
 				break;
 			default:
 				pText = "ToolBar";
@@ -223,6 +230,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 				break;
 			case IDB_ROMB:
 				obj_editor.StartRombEditor();
+				obj_editor.PressButton(hWndToolBar);
+				break;
+			case IDB_CILINDER:
+				obj_editor.StartCilinderEditor();
 				obj_editor.PressButton(hWndToolBar);
 				break;
 			case IDM_LINE:

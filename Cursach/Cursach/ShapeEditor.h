@@ -23,12 +23,14 @@ protected:
 	static Shape *pcshape[MY_SHAPE_ARRAY_SIZE];
 	POINT pt_old;
 	POINT pt_start;
+	char* name = "data_types.txt";
 public:
 	ShapeEditor(void);
     void OnLBdown(HWND);
 	void OnLBup(HWND);
 	void OnMosuseMove(HWND);
 	void OnPaint(HWND);
+	void PrintInFile(char *,int x1,int y1,int x2,int y2);
 	virtual void OnInitMenuPopup(HWND, WPARAM) = 0;
 	virtual void PressButton(HWND) = 0;
 };

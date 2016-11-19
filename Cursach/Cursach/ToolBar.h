@@ -14,4 +14,5 @@
 #define IDB_CUBE						   1010
 #define IDB_PUNCKT						   1011
 #define IDB_ROMB						   1012
+#define IDB_CILINDER					   1013
 #endif !defined(TOOL_H)

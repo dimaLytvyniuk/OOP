@@ -17,8 +17,7 @@ void CilinderEditor::OnLBup(HWND hWnd)
 		POINT pt;
 		GetCursorPos(&pt);
 		ScreenToClient(hWnd, &pt);
-		ofstream fout("data_types.txt", ios_base::out | ios_base::app);
-		fout << "CilinderShape " << pt_start.x << "  " << pt_start.y << "  " << pt.x << "  " << pt.y << endl;
+		PrintInFile("÷ил≥ндр", pt_start.x, pt_start.y, pt.x, pt.y);
 		pcshape[curr_length] = new CilinderShape();
 		pcshape[curr_length]->Set(pt_start.x, pt_start.y, pt_old.x, pt_old.y);
 		curr_length++;
@@ -86,7 +85,12 @@ void CilinderEditor::OnInitMenuPopup(HWND hWnd, WPARAM wParam)
 	}
 }
 
-void CilinderEditor::PressButton(HWND)
+void CilinderEditor::PressButton(HWND hWnd)
 {
-
+	SendMessage(hWnd, TB_PRESSBUTTON, IDB_ROMB, false);
+	SendMessage(hWnd, TB_PRESSBUTTON, IDB_LINE, false);
+	SendMessage(hWnd, TB_PRESSBUTTON, IDB_RECT, false);
+	SendMessage(hWnd, TB_PRESSBUTTON, IDB_ELLIPSE, false);
+	SendMessage(hWnd, TB_PRESSBUTTON, IDB_CUBE, false);
+	SendMessage(hWnd, TB_PRESSBUTTON, IDB_CILINDER, true);
 }

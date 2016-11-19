@@ -28,6 +28,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
+    <Text Include="data_types.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -81,23 +82,23 @@
     <ClInclude Include="ShapeEditor.h">
       <Filter>Заголовочные файлы\Editors</Filter>
     </ClInclude>
-    <ClInclude Include="PuncktLineShape.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="PuncktLineEditor.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
     <ClInclude Include="RombShape.h">
       <Filter>Заголовочные файлы\Shapes</Filter>
     </ClInclude>
     <ClInclude Include="RombEditor.h">
       <Filter>Заголовочные файлы\Editors</Filter>
     </ClInclude>
-    <ClInclude Include="CilinderShape.h">
-      <Filter>Заголовочные файлы</Filter>
-    </ClInclude>
     <ClInclude Include="CilinderEditor.h">
-      <Filter>Заголовочные файлы</Filter>
+      <Filter>Заголовочные файлы\Editors</Filter>
+    </ClInclude>
+    <ClInclude Include="CilinderShape.h">
+      <Filter>Заголовочные файлы\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="PuncktLineShape.h">
+      <Filter>Заголовочные файлы\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="PuncktLineEditor.h">
+      <Filter>Заголовочные файлы\Editors</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
