@@ -111,8 +111,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
    hInst = hInstance; // —охранить дескриптор экземпл€ра в глобальной переменной
 
-   HWND hWnd = CreateWindowW(szWindowClass, LPCWSTR(" урсова робота"), WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN,
-      CW_USEDEFAULT, 0, 2000, 2000, nullptr, nullptr, hInstance, nullptr);
+   HWND hWnd = CreateWindowW(szWindowClass, LPCWSTR(" урсова робота"), WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN | WS_HSCROLL,
+      CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
 
    if (!hWnd)
    {
@@ -141,6 +141,10 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	static HWND hWndToolBar;
+	int y, k;
+	static int n, length, sx, sy, cx, iVscrollPos, iHscrollPos, COUNT, MAX_WIDTH;
+	n = 1000;
+	static SIZE size = { 8, 16 };
 
     switch (message)
     {
@@ -150,6 +154,48 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		break;
 	case WM_SIZE:
 		OnSize(hWnd, hWndToolBar);
+		sx = LOWORD(lParam);
+		sy = HIWORD(lParam);
+		k = n - sy / size.cy;
+		if (k > 0) COUNT = k; else COUNT = iVscrollPos = 0;
+		SetScrollRange(hWnd, SB_VERT, 0, COUNT, FALSE);
+		SetScrollPos(hWnd, SB_VERT, iVscrollPos, TRUE);
+		k = length - sx / size.cx;
+		if (k > 0) MAX_WIDTH = k; else MAX_WIDTH = iHscrollPos = 0;
+		SetScrollRange(hWnd, SB_HORZ, 0, MAX_WIDTH, FALSE);
+		SetScrollPos(hWnd, SB_HORZ, iHscrollPos, TRUE);
+		break;
+	case WM_VSCROLL:
+		switch (LOWORD(wParam))
+		{
+		case SB_LINEUP: iVscrollPos--; break;
+		case SB_LINEDOWN: iVscrollPos++; break;
+		case SB_PAGEUP: iVscrollPos -= sy / size.cy; break;
+		case SB_PAGEDOWN: iVscrollPos += sy / size.cy; break;
+		case SB_THUMBPOSITION: iVscrollPos = HIWORD(wParam); break;
+		}
+		iVscrollPos = max(0, min(iVscrollPos, COUNT));
+		if (iVscrollPos != GetScrollPos(hWnd, SB_VERT))
+		{
+			SetScrollPos(hWnd, SB_VERT, iVscrollPos, TRUE);
+			InvalidateRect(hWnd, NULL, TRUE);
+		}
+		break;
+	case WM_HSCROLL:
+		switch (LOWORD(wParam))
+		{
+		case SB_LINEUP: iHscrollPos--; break;
+		case SB_LINEDOWN: iHscrollPos++; break;
+		case SB_PAGEUP: iHscrollPos -= 8; break;
+		case SB_PAGEDOWN: iHscrollPos += 8; break;
+		case SB_THUMBPOSITION: iHscrollPos = HIWORD(wParam); break;
+		}
+		iHscrollPos = max(0, min(iHscrollPos, MAX_WIDTH));
+		if (iHscrollPos != GetScrollPos(hWnd, SB_HORZ))
+		{
+			SetScrollPos(hWnd, SB_HORZ, iHscrollPos, TRUE);
+			InvalidateRect(hWnd, NULL, TRUE);
+		}
 		break;
 	case WM_NOTIFY:
 	{
