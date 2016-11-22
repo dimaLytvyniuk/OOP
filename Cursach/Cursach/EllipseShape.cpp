@@ -4,6 +4,7 @@
 
 EllipseShape::EllipseShape()
 {
+	type = "Ellipse";
 }
 
 

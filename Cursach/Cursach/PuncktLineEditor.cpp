@@ -44,7 +44,7 @@ void PuncktLineEditor::OnLBup(HWND hWnd)
 		POINT pt;
 		GetCursorPos(&pt);
 		ScreenToClient(hWnd, &pt);
-		PrintInFile("Пунктирна лінія", pt_start.x, pt_start.y, pt.x, pt.y);
+		//PrintInFile("Пунктирна лінія", pt_start.x, pt_start.y, pt.x, pt.y);
 		pcshape[curr_length] = new PuncktLineShape();
 		pcshape[curr_length]->Set(pt_start.x, pt_start.y, pt.x, pt.y);
 		curr_length++;

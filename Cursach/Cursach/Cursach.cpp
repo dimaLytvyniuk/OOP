@@ -1,9 +1,11 @@
-// Cursach.cpp: определяет точку входа для приложения.
+п»ї// Cursach.cpp: Г®ГЇГ°ГҐГ¤ГҐГ«ГїГҐГІ ГІГ®Г·ГЄГі ГўГµГ®Г¤Г  Г¤Г«Гї ГЇГ°ГЁГ«Г®Г¦ГҐГ­ГЁГї.
 //
 
 #include "stdafx.h"
 #include "Cursach.h"
 #include "ToolBar.h"
+#include <fstream>
+#include <commdlg.h>
 
 #define MAX_LOADSTRING 100
 
@@ -17,12 +19,12 @@ TBBUTTON tbb_1[] = {
 	{ 6, IDB_CILINDER, TBSTATE_ENABLED, TBSTYLE_BUTTON, 0, 0, 0, 0 },
 };
 
-// Глобальные переменные:
-HINSTANCE hInst;                                // текущий экземпляр
-WCHAR szTitle[MAX_LOADSTRING];// Текст строки заголовка
-WCHAR szWindowClass[MAX_LOADSTRING];            // имя класса главного окна
+// ГѓГ«Г®ГЎГ Г«ГјГ­Г»ГҐ ГЇГҐГ°ГҐГ¬ГҐГ­Г­Г»ГҐ:
+HINSTANCE hInst;                                // ГІГҐГЄГіГ№ГЁГ© ГЅГЄГ§ГҐГ¬ГЇГ«ГїГ°
+WCHAR szTitle[MAX_LOADSTRING];// Г’ГҐГЄГ±ГІ Г±ГІГ°Г®ГЄГЁ Г§Г ГЈГ®Г«Г®ГўГЄГ 
+WCHAR szWindowClass[MAX_LOADSTRING];            // ГЁГ¬Гї ГЄГ«Г Г±Г±Г  ГЈГ«Г ГўГ­Г®ГЈГ® Г®ГЄГ­Г 
 
-// Отправить объявления функций, включенных в этот модуль кода:
+// ГЋГІГЇГ°Г ГўГЁГІГј Г®ГЎГєГїГўГ«ГҐГ­ГЁГї ГґГіГ­ГЄГ¶ГЁГ©, ГўГЄГ«ГѕГ·ГҐГ­Г­Г»Гµ Гў ГЅГІГ®ГІ Г¬Г®Г¤ГіГ«Гј ГЄГ®Г¤Г :
 ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
@@ -39,14 +41,14 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
 
-    // TODO: разместите код здесь.
+    // TODO: Г°Г Г§Г¬ГҐГ±ГІГЁГІГҐ ГЄГ®Г¤ Г§Г¤ГҐГ±Гј.
 
-    // Инициализация глобальных строк
+    // Г€Г­ГЁГ¶ГЁГ Г«ГЁГ§Г Г¶ГЁГї ГЈГ«Г®ГЎГ Г«ГјГ­Г»Гµ Г±ГІГ°Г®ГЄ
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
     LoadStringW(hInstance, IDC_CURSACH, szWindowClass, MAX_LOADSTRING);
     MyRegisterClass(hInstance);
 
-    // Выполнить инициализацию приложения:
+    // Г‚Г»ГЇГ®Г«Г­ГЁГІГј ГЁГ­ГЁГ¶ГЁГ Г«ГЁГ§Г Г¶ГЁГѕ ГЇГ°ГЁГ«Г®Г¦ГҐГ­ГЁГї:
     if (!InitInstance (hInstance, nCmdShow))
     {
         return FALSE;
@@ -56,7 +58,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     MSG msg;
 
-    // Цикл основного сообщения:
+    // Г–ГЁГЄГ« Г®Г±Г­Г®ГўГ­Г®ГЈГ® Г±Г®Г®ГЎГ№ГҐГ­ГЁГї:
     while (GetMessage(&msg, nullptr, 0, 0))
     {
         if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
@@ -72,9 +74,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
 
 //
-//  ФУНКЦИЯ: MyRegisterClass()
+//  Г”Г“ГЌГЉГ–Г€Гџ: MyRegisterClass()
 //
-//  НАЗНАЧЕНИЕ: регистрирует класс окна.
+//  ГЌГЂГ‡ГЌГЂГ—Г…ГЌГ€Г…: Г°ГҐГЈГЁГ±ГІГ°ГЁГ°ГіГҐГІ ГЄГ«Г Г±Г± Г®ГЄГ­Г .
 //
 ATOM MyRegisterClass(HINSTANCE hInstance)
 {
@@ -98,21 +100,21 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
 }
 
 //
-//   ФУНКЦИЯ: InitInstance(HINSTANCE, int)
+//   Г”Г“ГЌГЉГ–Г€Гџ: InitInstance(HINSTANCE, int)
 //
-//   НАЗНАЧЕНИЕ: сохраняет обработку экземпляра и создает главное окно.
+//   ГЌГЂГ‡ГЌГЂГ—Г…ГЌГ€Г…: Г±Г®ГµГ°Г Г­ГїГҐГІ Г®ГЎГ°Г ГЎГ®ГІГЄГі ГЅГЄГ§ГҐГ¬ГЇГ«ГїГ°Г  ГЁ Г±Г®Г§Г¤Г ГҐГІ ГЈГ«Г ГўГ­Г®ГҐ Г®ГЄГ­Г®.
 //
-//   КОММЕНТАРИИ:
+//   ГЉГЋГЊГЊГ…ГЌГ’ГЂГђГ€Г€:
 //
-//        В данной функции дескриптор экземпляра сохраняется в глобальной переменной, а также
-//        создается и выводится на экран главное окно программы.
+//        Г‚ Г¤Г Г­Г­Г®Г© ГґГіГ­ГЄГ¶ГЁГЁ Г¤ГҐГ±ГЄГ°ГЁГЇГІГ®Г° ГЅГЄГ§ГҐГ¬ГЇГ«ГїГ°Г  Г±Г®ГµГ°Г Г­ГїГҐГІГ±Гї Гў ГЈГ«Г®ГЎГ Г«ГјГ­Г®Г© ГЇГҐГ°ГҐГ¬ГҐГ­Г­Г®Г©, Г  ГІГ ГЄГ¦ГҐ
+//        Г±Г®Г§Г¤Г ГҐГІГ±Гї ГЁ ГўГ»ГўГ®Г¤ГЁГІГ±Гї Г­Г  ГЅГЄГ°Г Г­ ГЈГ«Г ГўГ­Г®ГҐ Г®ГЄГ­Г® ГЇГ°Г®ГЈГ°Г Г¬Г¬Г».
 //
 BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
-   hInst = hInstance; // Сохранить дескриптор экземпляра в глобальной переменной
+   hInst = hInstance; // Г‘Г®ГµГ°Г Г­ГЁГІГј Г¤ГҐГ±ГЄГ°ГЁГЇГІГ®Г° ГЅГЄГ§ГҐГ¬ГЇГ«ГїГ°Г  Гў ГЈГ«Г®ГЎГ Г«ГјГ­Г®Г© ГЇГҐГ°ГҐГ¬ГҐГ­Г­Г®Г©
 
-   HWND hWnd = CreateWindowW(szWindowClass, LPCWSTR("Курсова робота"), WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN | WS_HSCROLL,
-      CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
+   HWND hWnd = CreateWindowW(szWindowClass, LPCWSTR("ГЉГіГ°Г±Г®ГўГ  Г°Г®ГЎГ®ГІГ "), WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN,
+      CW_USEDEFAULT, 0, 2000, 2000, nullptr, nullptr, hInstance, nullptr);
 
    if (!hWnd)
    {
@@ -122,80 +124,41 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
 
-   ofstream fout("data_types.txt", ios_base::out);
-   fout.close();
 
    return TRUE;
 }
 
 //
-//  ФУНКЦИЯ: WndProc(HWND, UINT, WPARAM, LPARAM)
+//  Г”Г“ГЌГЉГ–Г€Гџ: WndProc(HWND, UINT, WPARAM, LPARAM)
 //
-//  НАЗНАЧЕНИЕ:  обрабатывает сообщения в главном окне.
+//  ГЌГЂГ‡ГЌГЂГ—Г…ГЌГ€Г…:  Г®ГЎГ°Г ГЎГ ГІГ»ГўГ ГҐГІ Г±Г®Г®ГЎГ№ГҐГ­ГЁГї Гў ГЈГ«Г ГўГ­Г®Г¬ Г®ГЄГ­ГҐ.
 //
-//  WM_COMMAND — обработать меню приложения
-//  WM_PAINT — отрисовать главное окно
-//  WM_DESTROY — отправить сообщение о выходе и вернуться
+//  WM_COMMAND вЂ” Г®ГЎГ°Г ГЎГ®ГІГ ГІГј Г¬ГҐГ­Гѕ ГЇГ°ГЁГ«Г®Г¦ГҐГ­ГЁГї
+//  WM_PAINT вЂ” Г®ГІГ°ГЁГ±Г®ГўГ ГІГј ГЈГ«Г ГўГ­Г®ГҐ Г®ГЄГ­Г®
+//  WM_DESTROY вЂ” Г®ГІГЇГ°Г ГўГЁГІГј Г±Г®Г®ГЎГ№ГҐГ­ГЁГҐ Г® ГўГ»ГµГ®Г¤ГҐ ГЁ ГўГҐГ°Г­ГіГІГјГ±Гї
 //
 //
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	static HWND hWndToolBar;
-	int y, k;
-	static int n, length, sx, sy, cx, iVscrollPos, iHscrollPos, COUNT, MAX_WIDTH;
-	n = 1000;
-	static SIZE size = { 8, 16 };
+	static TCHAR name[256] = _T("");
+	static OPENFILENAME file;
 
     switch (message)
     {
 	case WM_CREATE:
 		hWndToolBar = CreateToolbarEx(hWnd, TBSTYLE_TOOLTIPS | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_CLIPSIBLINGS | CCS_TOP, 1, 7,
 	    hInst, IDB_BITMAP1, tbb_1, 7, 25, 25, 25, 25, sizeof(TBBUTTON));
+		file.lStructSize = sizeof(OPENFILENAME);
+		file.hInstance = hInst;
+		file.lpstrFilter = _T("Text\0*.txt");
+		file.lpstrFile = name;
+		file.nMaxFile = 256;
+		file.lpstrInitialDir = _T(".\\");
+		file.lpstrDefExt = _T("txt");
 		break;
 	case WM_SIZE:
 		OnSize(hWnd, hWndToolBar);
-		sx = LOWORD(lParam);
-		sy = HIWORD(lParam);
-		k = n - sy / size.cy;
-		if (k > 0) COUNT = k; else COUNT = iVscrollPos = 0;
-		SetScrollRange(hWnd, SB_VERT, 0, COUNT, FALSE);
-		SetScrollPos(hWnd, SB_VERT, iVscrollPos, TRUE);
-		k = length - sx / size.cx;
-		if (k > 0) MAX_WIDTH = k; else MAX_WIDTH = iHscrollPos = 0;
-		SetScrollRange(hWnd, SB_HORZ, 0, MAX_WIDTH, FALSE);
-		SetScrollPos(hWnd, SB_HORZ, iHscrollPos, TRUE);
-		break;
-	case WM_VSCROLL:
-		switch (LOWORD(wParam))
-		{
-		case SB_LINEUP: iVscrollPos--; break;
-		case SB_LINEDOWN: iVscrollPos++; break;
-		case SB_PAGEUP: iVscrollPos -= sy / size.cy; break;
-		case SB_PAGEDOWN: iVscrollPos += sy / size.cy; break;
-		case SB_THUMBPOSITION: iVscrollPos = HIWORD(wParam); break;
-		}
-		iVscrollPos = max(0, min(iVscrollPos, COUNT));
-		if (iVscrollPos != GetScrollPos(hWnd, SB_VERT))
-		{
-			SetScrollPos(hWnd, SB_VERT, iVscrollPos, TRUE);
-			InvalidateRect(hWnd, NULL, TRUE);
-		}
-		break;
-	case WM_HSCROLL:
-		switch (LOWORD(wParam))
-		{
-		case SB_LINEUP: iHscrollPos--; break;
-		case SB_LINEDOWN: iHscrollPos++; break;
-		case SB_PAGEUP: iHscrollPos -= 8; break;
-		case SB_PAGEDOWN: iHscrollPos += 8; break;
-		case SB_THUMBPOSITION: iHscrollPos = HIWORD(wParam); break;
-		}
-		iHscrollPos = max(0, min(iHscrollPos, MAX_WIDTH));
-		if (iHscrollPos != GetScrollPos(hWnd, SB_HORZ))
-		{
-			SetScrollPos(hWnd, SB_HORZ, iHscrollPos, TRUE);
-			InvalidateRect(hWnd, NULL, TRUE);
-		}
 		break;
 	case WM_NOTIFY:
 	{
@@ -208,25 +171,25 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			switch (lpttt->hdr.idFrom)
 			{
 			case IDB_ROMB:
-				pText = "Ромб";
+				pText = "ГђГ®Г¬ГЎ";
 				break;
 			case IDB_LINE:
-				pText = "Лінія";
+				pText = "Г‹ВіГ­ВіГї";
 				break;
 			case IDB_RECT:
-				pText = "Прямокутник";
+				pText = "ГЏГ°ГїГ¬Г®ГЄГіГІГ­ГЁГЄ";
 				break;
 			case IDB_ELLIPSE:
-				pText = "Елліпс";
+				pText = "Г…Г«Г«ВіГЇГ±";
 				break;
 			case IDB_CUBE:
-				pText = "Куб";
+				pText = "ГЉГіГЎ";
 				break;
 			case IDB_CILINDER:
-				pText = "Циліндр";
+				pText = "Г–ГЁГ«ВіГ­Г¤Г°";
 				break;
 			case IDB_PUNCKT:
-				pText = "Пунктирна лінія";
+				pText = "ГЏГіГ­ГЄГІГЁГ°Г­Г  Г«ВіГ­ВіГї";
 				break;
 			default:
 				pText = "ToolBar";
@@ -251,7 +214,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     case WM_COMMAND:
         {
             int wmId = LOWORD(wParam);
-            // Разобрать выбор в меню:
+            // ГђГ Г§Г®ГЎГ°Г ГІГј ГўГ»ГЎГ®Г° Гў Г¬ГҐГ­Гѕ:
             switch (wmId)
             {
 			case IDB_ELLIPSE:
@@ -313,6 +276,19 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             case IDM_ABOUT:
                 DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
                 break;
+			case IDM_SAVEFILE:
+				file.lpstrTitle = _T("РћС‚РєСЂС‹С‚СЊ С„Р°Р№Р» РґР»СЏ Р·Р°РїРёСЃРё");
+				file.Flags = OFN_NOTESTFILECREATE;
+				if (!GetSaveFileName(&file)) return 1;
+				obj_editor.StartWriteFile(name);
+				break;
+			case IDM_OPENFILE:
+				file.lpstrTitle = _T("РћС‚РєСЂС‹С‚СЊ С„Р°Р№Р» РґР»СЏ С‡С‚РµРЅРёСЏ");
+				file.Flags = OFN_HIDEREADONLY;
+				if (!GetOpenFileName(&file)) return 1;
+				obj_editor.StartReadFile(name);
+				InvalidateRect(hWnd, NULL, 1);
+				break;
             case IDM_EXIT:
                 DestroyWindow(hWnd);
                 break;
@@ -335,7 +311,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     return 0;
 }
 
-// Обработчик сообщений для окна "О программе".
+// ГЋГЎГ°Г ГЎГ®ГІГ·ГЁГЄ Г±Г®Г®ГЎГ№ГҐГ­ГЁГ© Г¤Г«Гї Г®ГЄГ­Г  "ГЋ ГЇГ°Г®ГЈГ°Г Г¬Г¬ГҐ".
 INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 {
     UNREFERENCED_PARAMETER(lParam);

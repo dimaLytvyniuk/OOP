@@ -18,7 +18,7 @@ void LineEditor::OnLBup(HWND hWnd)
 		POINT pt;
 		GetCursorPos(&pt);
 		ScreenToClient(hWnd, &pt);
-		PrintInFile("Лінія", pt_start.x, pt_start.y, pt.x, pt.y);
+		//PrintInFile("Лінія", pt_start.x, pt_start.y, pt.x, pt.y);
 		pcshape[curr_length] = new LineShape();
 		pcshape[curr_length]->Set(pt_start.x, pt_start.y, pt.x, pt.y);
 		curr_length++;

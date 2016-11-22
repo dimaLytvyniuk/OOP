@@ -18,7 +18,7 @@ void EllipseEditor::OnLBup(HWND hWnd)
 		POINT pt;
 		GetCursorPos(&pt);
 		ScreenToClient(hWnd, &pt);
-		PrintInFile("Елліпс", pt_start.x, pt_start.y, pt.x, pt.y);
+		//PrintInFile("Елліпс", pt_start.x, pt_start.y, pt.x, pt.y);
 		pcshape[curr_length] = new EllipseShape();
 		pcshape[curr_length]->Set(pt_start.x, pt_start.y, pt.x, pt.y);
 		curr_length++;

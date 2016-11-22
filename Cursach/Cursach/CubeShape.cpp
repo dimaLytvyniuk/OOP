@@ -4,6 +4,7 @@
 
 CubeShape::CubeShape()
 {
+	type = "Cube";
 }
 
 
