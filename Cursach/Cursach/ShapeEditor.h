@@ -31,7 +31,9 @@ public:
 	void OnMosuseMove(HWND);
 	void OnPaint(HWND);
 	void PrintInFile(char *,int x1,int y1,int x2,int y2);
-	virtual void OnInitMenuPopup(HWND, WPARAM) = 0;
-	virtual void PressButton(HWND) = 0;
+	void PrintInFile(char *);
+	void ReadFromFile(char*);
+	void OnInitMenuPopup(HWND, WPARAM);
+	void PressButton(HWND);
 };
 #endif !defined(SHAPEDITOR_H)

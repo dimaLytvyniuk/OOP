@@ -44,7 +44,7 @@ void RombEditor::OnLBup(HWND hWnd)
 		POINT pt;
 		GetCursorPos(&pt);
 		ScreenToClient(hWnd, &pt);
-		PrintInFile("Ромб", pt_start.x, pt_start.y, pt.x, pt.y);
+		//PrintInFile("Ромб", pt_start.x, pt_start.y, pt.x, pt.y);
 		pcshape[curr_length] = new RombShape();
 		pcshape[curr_length]->Set(pt_start.x, pt_start.y, pt_old.x, pt_old.y);
 		curr_length++;

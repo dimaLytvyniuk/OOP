@@ -4,6 +4,7 @@
 
 LineShape::LineShape()
 {
+	type = "Line";
 }
 
 

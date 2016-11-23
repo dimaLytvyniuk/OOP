@@ -59,6 +59,20 @@ void ShapeObjectEditor::StartEllipseEditor()
 	pse = new EllipseEditor();
 }
 
+void ShapeObjectEditor::StartWriteFile(TCHAR* name)
+{
+	if (pse)
+		pse->PrintInFile(name);
+}
+
+void ShapeObjectEditor::StartReadFile(TCHAR* name)
+{
+	if (pse)
+		delete pse;
+	pse = new ShapeEditor();
+	pse->ReadFromFile(name);
+}
+
 void ShapeObjectEditor::OnLBdown(HWND hWnd)
 {
 	if (pse)

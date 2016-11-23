@@ -22,6 +22,8 @@ class ShapeObjectEditor
 		void StartPuncktLineEditor();
 		void StartCubeEditor();
 		void StartCilinderEditor();
+		void StartWriteFile(TCHAR*);
+		void StartReadFile(TCHAR*);
 		void OnLBdown(HWND);
 		void OnLBup(HWND);
 		void OnMosuseMove(HWND);

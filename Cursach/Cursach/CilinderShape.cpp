@@ -4,6 +4,7 @@
 
 CilinderShape::CilinderShape()
 {
+	type = "Cilinder";
 }
 
 

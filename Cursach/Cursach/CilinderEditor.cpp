@@ -17,7 +17,7 @@ void CilinderEditor::OnLBup(HWND hWnd)
 		POINT pt;
 		GetCursorPos(&pt);
 		ScreenToClient(hWnd, &pt);
-		PrintInFile("Öèë³íäğ", pt_start.x, pt_start.y, pt.x, pt.y);
+		//PrintInFile("Öèë³íäğ", pt_start.x, pt_start.y, pt.x, pt.y);
 		pcshape[curr_length] = new CilinderShape();
 		pcshape[curr_length]->Set(pt_start.x, pt_start.y, pt_old.x, pt_old.y);
 		curr_length++;

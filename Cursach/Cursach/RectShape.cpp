@@ -4,6 +4,7 @@
 
 RectShape::RectShape()
 {
+	type = "Rect";
 }
 
 

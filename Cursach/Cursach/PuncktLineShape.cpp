@@ -4,6 +4,7 @@
 
 PuncktLineShape::PuncktLineShape()
 {
+	type = "PuncktLine";
 }
 
 

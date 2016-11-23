@@ -4,6 +4,7 @@
 
 RombShape::RombShape()
 {
+	type = "Romb\0";
 }
 
 
