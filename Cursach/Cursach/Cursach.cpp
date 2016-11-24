@@ -32,6 +32,7 @@ INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 
 ShapeObjectEditor obj_editor;
 void OnSize(HWND hWnd, HWND hWndToolBar);
+COLORREF stdColor = RGB(255, 255, 255);
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
@@ -143,6 +144,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	static HWND hWndToolBar;
 	static TCHAR name[256] = _T("");
 	static OPENFILENAME file;
+	static CHOOSECOLOR ccs;
+	static COLORREF acrCustClr[16];
+	static HBRUSH hBrush;
 
     switch (message)
     {
@@ -156,6 +160,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		file.nMaxFile = 256;
 		file.lpstrInitialDir = _T(".\\");
 		file.lpstrDefExt = _T("txt");
+		ccs.lStructSize = sizeof(CHOOSECOLOR);
+		ccs.hwndOwner = hWnd;
+		ccs.rgbResult = stdColor;
+		ccs.Flags = CC_RGBINIT | CC_FULLOPEN;
+		ccs.lpCustColors = (LPDWORD)acrCustClr;
 		break;
 	case WM_SIZE:
 		OnSize(hWnd, hWndToolBar);
@@ -288,6 +297,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 				if (!GetOpenFileName(&file)) return 1;
 				obj_editor.StartReadFile(name);
 				InvalidateRect(hWnd, NULL, 1);
+				break;
+			case IDM_STDCOLOR:
+				if (ChooseColor(&ccs))
+				{
+					stdColor = ccs.rgbResult;
+					if (hBrush) DeleteObject(hBrush);
+					hBrush = CreateSolidBrush(stdColor);
+				}
 				break;
             case IDM_EXIT:
                 DestroyWindow(hWnd);
