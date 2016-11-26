@@ -4,7 +4,7 @@ class RombEditor :
 	public ShapeEditor
 {
 public:
-	RombEditor();
+	RombEditor(COLORREF, COLORREF);
 	~RombEditor();
 	void OnInitMenuPopup(HWND, WPARAM);
 	void PressButton(HWND);

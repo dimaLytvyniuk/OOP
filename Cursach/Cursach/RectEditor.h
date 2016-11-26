@@ -4,7 +4,7 @@ class RectEditor :
 	public ShapeEditor
 {
 public:
-	RectEditor();
+	RectEditor(COLORREF, COLORREF);
 	~RectEditor();
 	void OnLBup(HWND);
 	void OnMosuseMove(HWND);

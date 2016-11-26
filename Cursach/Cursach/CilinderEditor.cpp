@@ -2,8 +2,9 @@
 #include "CilinderEditor.h"
 
 
-CilinderEditor::CilinderEditor()
+CilinderEditor::CilinderEditor(COLORREF brushColor,COLORREF peColor):ShapeEditor(brushColor,peColor)
 {
+
 }
 
 
@@ -19,7 +20,7 @@ void CilinderEditor::OnLBup(HWND hWnd)
 		ScreenToClient(hWnd, &pt);
 		//PrintInFile("÷ил≥ндр", pt_start.x, pt_start.y, pt.x, pt.y);
 		pcshape[curr_length] = new CilinderShape();
-		pcshape[curr_length]->Set(pt_start.x, pt_start.y, pt_old.x, pt_old.y);
+		pcshape[curr_length]->Set(pt_start.x, pt_start.y, pt_old.x, pt_old.y,brColor,penColor);
 		curr_length++;
 		InvalidateRect(hWnd, NULL, TRUE);
 	}

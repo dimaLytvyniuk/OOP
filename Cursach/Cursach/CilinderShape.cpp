@@ -15,6 +15,13 @@ CilinderShape::~CilinderShape()
 void CilinderShape::Show(HDC hdc)
 {
 	HPEN hPenOld, hPen;
+	HBRUSH hBrush, hBrushOld;
+
+	hPen = CreatePen(PS_SOLID, 1, penColor);
+	hPenOld = (HPEN)SelectObject(hdc, hPen);
+
+	hBrush = (HBRUSH)CreateSolidBrush(brColor);
+	hBrushOld = (HBRUSH)SelectObject(hdc, hBrush);
 
 	int xs_A = xs2,
 		xs_B = xs1,
@@ -31,7 +38,10 @@ void CilinderShape::Show(HDC hdc)
 	Rectangle(hdc, xs_C, ys_C, xs_D, ys_D);
 	Ellipse(hdc, xs1, ys1, xs_A, ys_A);
 
-	hPen = CreatePen(PS_SOLID, 2, RGB(0, 255, 0));
+	SelectObject(hdc, hPenOld);
+	DeleteObject(hPen);
+
+	hPen = CreatePen(PS_SOLID, 2, brColor);
 	hPenOld = (HPEN)SelectObject(hdc, hPen);
 
 	if (xs1 > xs2)
@@ -42,4 +52,6 @@ void CilinderShape::Show(HDC hdc)
 
 	SelectObject(hdc, hPenOld);
 	DeleteObject(hPen);
+	SelectObject(hdc, hBrushOld);
+	DeleteObject(hBrush);
 }

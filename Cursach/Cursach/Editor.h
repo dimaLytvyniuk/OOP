@@ -13,7 +13,7 @@ public:
 	virtual void OnLBdown(HWND) = 0;
 	virtual void OnLBup(HWND) = 0;
 	virtual void OnMosuseMove(HWND) = 0;
-	virtual void OnPaint(HWND) = 0;
+	virtual void OnPaint(HWND,HDC) = 0;
 };
 #endif !defined(EDITOR_H)
 

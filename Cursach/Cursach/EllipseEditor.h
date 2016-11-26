@@ -5,7 +5,7 @@ class EllipseEditor :
 	public ShapeEditor
 {
 public:
-	EllipseEditor();
+	EllipseEditor(COLORREF, COLORREF);
 	~EllipseEditor();
 	void OnLBup(HWND);
 	void OnMosuseMove(HWND);

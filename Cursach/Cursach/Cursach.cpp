@@ -33,6 +33,7 @@ INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 ShapeObjectEditor obj_editor;
 void OnSize(HWND hWnd, HWND hWndToolBar);
 COLORREF stdColor = RGB(255, 255, 255);
+COLORREF penColor = RGB(0, 0, 0);
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
@@ -144,15 +145,16 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	static HWND hWndToolBar;
 	static TCHAR name[256] = _T("");
 	static OPENFILENAME file;
-	static CHOOSECOLOR ccs;
+	static CHOOSECOLOR ccs,
+		penCCS;
 	static COLORREF acrCustClr[16];
 	static HBRUSH hBrush;
 
     switch (message)
     {
 	case WM_CREATE:
-		hWndToolBar = CreateToolbarEx(hWnd, TBSTYLE_TOOLTIPS | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_CLIPSIBLINGS | CCS_TOP, 1, 7,
-	    hInst, IDB_BITMAP1, tbb_1, 7, 25, 25, 25, 25, sizeof(TBBUTTON));
+		hWndToolBar = CreateToolbarEx(hWnd, TBSTYLE_TOOLTIPS | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_CLIPSIBLINGS | CCS_TOP, 1, 7,hInst, IDB_BITMAP1, tbb_1, 7, 25, 25, 25, 25, sizeof(TBBUTTON));
+
 		file.lStructSize = sizeof(OPENFILENAME);
 		file.hInstance = hInst;
 		file.lpstrFilter = _T("Text\0*.txt");
@@ -160,11 +162,19 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		file.nMaxFile = 256;
 		file.lpstrInitialDir = _T(".\\");
 		file.lpstrDefExt = _T("txt");
+
 		ccs.lStructSize = sizeof(CHOOSECOLOR);
 		ccs.hwndOwner = hWnd;
 		ccs.rgbResult = stdColor;
 		ccs.Flags = CC_RGBINIT | CC_FULLOPEN;
 		ccs.lpCustColors = (LPDWORD)acrCustClr;
+
+		penCCS.lStructSize = sizeof(CHOOSECOLOR);
+		penCCS.hwndOwner = hWnd;
+		penCCS.rgbResult = stdColor;
+		penCCS.Flags = CC_RGBINIT | CC_FULLOPEN;
+		penCCS.lpCustColors = (LPDWORD)acrCustClr;
+
 		break;
 	case WM_SIZE:
 		OnSize(hWnd, hWndToolBar);
@@ -227,59 +237,59 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             switch (wmId)
             {
 			case IDB_ELLIPSE:
-				obj_editor.StartEllipseEditor();
+				obj_editor.StartEllipseEditor(stdColor,penColor);
 				obj_editor.PressButton(hWndToolBar);
 				break;
 			case IDB_RECT:
-				obj_editor.StartRectEditor();
+				obj_editor.StartRectEditor(stdColor, penColor);
 				obj_editor.PressButton(hWndToolBar);
 				break;
 			case IDB_LINE:
-				obj_editor.StartLineEditor();
+				obj_editor.StartLineEditor(stdColor, penColor);
 				obj_editor.PressButton(hWndToolBar);
 				break;
 			case IDB_CUBE:
-				obj_editor.StartCubeEditor();
+				obj_editor.StartCubeEditor(stdColor, penColor);
 				obj_editor.PressButton(hWndToolBar);
 				break;
 			case IDB_PUNCKT:
-				obj_editor.StartPuncktLineEditor();
+				obj_editor.StartPuncktLineEditor(stdColor, penColor);
 				obj_editor.PressButton(hWndToolBar);
 				break;
 			case IDB_ROMB:
-				obj_editor.StartRombEditor();
+				obj_editor.StartRombEditor(stdColor, penColor);
 				obj_editor.PressButton(hWndToolBar);
 				break;
 			case IDB_CILINDER:
-				obj_editor.StartCilinderEditor();
+				obj_editor.StartCilinderEditor(stdColor, penColor);
 				obj_editor.PressButton(hWndToolBar);
 				break;
 			case IDM_LINE:
-				obj_editor.StartLineEditor();
+				obj_editor.StartLineEditor(stdColor, penColor);
 				obj_editor.PressButton(hWndToolBar);
 				break;
 			case IDM_RECT:
-				obj_editor.StartRectEditor();
+				obj_editor.StartRectEditor(stdColor, penColor);
 				obj_editor.PressButton(hWndToolBar);
 				break;
 			case IDM_ELLIPSE:
-				obj_editor.StartEllipseEditor();
+				obj_editor.StartEllipseEditor(stdColor, penColor);
 				obj_editor.PressButton(hWndToolBar);
 				break;
 			case IDM_CUBE:
-				obj_editor.StartCubeEditor();
+				obj_editor.StartCubeEditor(stdColor, penColor);
 				obj_editor.PressButton(hWndToolBar);
 				break;
 			case IDM_PUNKT:
-				obj_editor.StartPuncktLineEditor();
+				obj_editor.StartPuncktLineEditor(stdColor, penColor);
 				obj_editor.PressButton(hWndToolBar);
 				break;
 			case IDM_ROMB:
-				obj_editor.StartRombEditor();
+				obj_editor.StartRombEditor(stdColor, penColor);
 				obj_editor.PressButton(hWndToolBar);
 				break;
 			case IDM_CILINDER:
-				obj_editor.StartCilinderEditor();
+				obj_editor.StartCilinderEditor(stdColor, penColor);
 				obj_editor.PressButton(hWndToolBar);
 				break;
             case IDM_ABOUT:
@@ -302,8 +312,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 				if (ChooseColor(&ccs))
 				{
 					stdColor = ccs.rgbResult;
-					if (hBrush) DeleteObject(hBrush);
-					hBrush = CreateSolidBrush(stdColor);
+					obj_editor.Reset(hWnd, wParam, hWndToolBar);
+				}
+				break;
+			case IDM_PENCOLOR:
+				if (ChooseColor(&penCCS))
+				{
+					penColor = penCCS.rgbResult;
+					obj_editor.Reset(hWnd, wParam, hWndToolBar);
 				}
 				break;
             case IDM_EXIT:
@@ -316,7 +332,12 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         break;
     case WM_PAINT:
         {
-			obj_editor.OnPaint(hWnd);
+			PAINTSTRUCT ps;
+			HDC hdc;
+
+			hdc = BeginPaint(hWnd, &ps);
+			obj_editor.OnPaint(hWnd,hdc);
+			EndPaint(hWnd, &ps);
         }
         break;
     case WM_DESTROY:

@@ -4,7 +4,7 @@ class CilinderEditor :
 	public ShapeEditor
 {
 public:
-	CilinderEditor();
+	CilinderEditor(COLORREF,COLORREF);
 	~CilinderEditor();
 	void OnLBup(HWND);
 	void OnMosuseMove(HWND);

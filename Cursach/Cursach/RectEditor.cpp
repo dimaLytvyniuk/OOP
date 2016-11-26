@@ -2,7 +2,7 @@
 #include "RectEditor.h"
 
 
-RectEditor::RectEditor()
+RectEditor::RectEditor(COLORREF brushColor, COLORREF peColor) :ShapeEditor(brushColor, peColor)
 {
 }
 
@@ -39,7 +39,7 @@ void RectEditor::OnLBup(HWND hWnd)
 		ScreenToClient(hWnd, &pt);
 		//PrintInFile("Прямокутник", pt_start.x, pt_start.y, pt.x, pt.y);
 		pcshape[curr_length] = new RectShape();
-		pcshape[curr_length]->Set(pt_start.x , pt_start.y , pt_old.x, pt_old.y);
+		pcshape[curr_length]->Set(pt_start.x , pt_start.y , pt_old.x, pt_old.y, brColor, penColor);
 		curr_length++;
 		InvalidateRect(hWnd, NULL, TRUE);
 	}

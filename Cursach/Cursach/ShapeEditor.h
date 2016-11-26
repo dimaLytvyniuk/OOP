@@ -24,16 +24,19 @@ protected:
 	POINT pt_old;
 	POINT pt_start;
 	char* name = "data_types.txt";
+	COLORREF brColor,
+		penColor;
 public:
-	ShapeEditor(void);
+	ShapeEditor(COLORREF,COLORREF);
+	ShapeEditor();
     void OnLBdown(HWND);
 	void OnLBup(HWND);
 	void OnMosuseMove(HWND);
-	void OnPaint(HWND);
+	void OnPaint(HWND,HDC);
 	void PrintInFile(char *,int x1,int y1,int x2,int y2);
 	void PrintInFile(char *);
 	void ReadFromFile(char*);
-	void OnInitMenuPopup(HWND, WPARAM);
-	void PressButton(HWND);
+	virtual void OnInitMenuPopup(HWND, WPARAM);
+	virtual void PressButton(HWND);
 };
 #endif !defined(SHAPEDITOR_H)

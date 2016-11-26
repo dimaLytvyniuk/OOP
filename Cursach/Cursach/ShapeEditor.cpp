@@ -5,20 +5,25 @@
 Shape *ShapeEditor::pcshape[MY_SHAPE_ARRAY_SIZE];
 int ShapeEditor::curr_length = 0;
 
-ShapeEditor::ShapeEditor()
+ShapeEditor::ShapeEditor(COLORREF brushColor,COLORREF peColor)
 {
-
+	brColor = brushColor;
+	penColor = peColor;
 }
 
-void ShapeEditor::OnPaint(HWND hWnd)
+ShapeEditor::ShapeEditor()
+{
+	
+}
+
+void ShapeEditor::OnPaint(HWND hWnd,HDC hdc)
 {	
 	
-	PAINTSTRUCT ps;
-	HDC hdc;
+
 	HBRUSH hBrush, hBrushOld;
 
 	
-	hdc = BeginPaint(hWnd, &ps);
+	
 	//hBrush = (HBRUSH)CreateSolidBrush(RGB(0, 255, 0));
 	//hBrushOld = (HBRUSH)SelectObject(hdc, hBrush);
 
@@ -28,7 +33,6 @@ void ShapeEditor::OnPaint(HWND hWnd)
 			pcshape[i]->Show(hdc);
 		
 	}
-	EndPaint(hWnd, &ps);
 /*
 	SelectObject(hdc, hBrushOld);
 	DeleteObject(hBrush);
@@ -143,7 +147,7 @@ void ShapeEditor::ReadFromFile(char* name)
 
 				if (c_dots == 4)
 				{
-					pcshape[n]->Set(dots[0], dots[1], dots[2], dots[3]);
+					pcshape[n]->Set(dots[0], dots[1], dots[2], dots[3],RGB(25,255,255),RGB(0,0,0));
 					c_dots = 0;
 				}
 				else

@@ -2,7 +2,7 @@
 #include "LineEditor.h"
 
 
-LineEditor::LineEditor()
+LineEditor::LineEditor(COLORREF brushColor, COLORREF peColor) :ShapeEditor(brushColor, peColor)
 {
 }
 
@@ -20,7 +20,7 @@ void LineEditor::OnLBup(HWND hWnd)
 		ScreenToClient(hWnd, &pt);
 		//PrintInFile("Лінія", pt_start.x, pt_start.y, pt.x, pt.y);
 		pcshape[curr_length] = new LineShape();
-		pcshape[curr_length]->Set(pt_start.x, pt_start.y, pt.x, pt.y);
+		pcshape[curr_length]->Set(pt_start.x, pt_start.y, pt.x, pt.y, brColor, penColor);
 		curr_length++;
 		InvalidateRect(hWnd, NULL, TRUE);
 	}

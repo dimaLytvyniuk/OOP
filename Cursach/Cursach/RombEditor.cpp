@@ -2,7 +2,7 @@
 #include "RombEditor.h"
 
 
-RombEditor::RombEditor()
+RombEditor::RombEditor(COLORREF brushColor, COLORREF peColor) :ShapeEditor(brushColor, peColor)
 {
 }
 
@@ -46,7 +46,7 @@ void RombEditor::OnLBup(HWND hWnd)
 		ScreenToClient(hWnd, &pt);
 		//PrintInFile("Ромб", pt_start.x, pt_start.y, pt.x, pt.y);
 		pcshape[curr_length] = new RombShape();
-		pcshape[curr_length]->Set(pt_start.x, pt_start.y, pt_old.x, pt_old.y);
+		pcshape[curr_length]->Set(pt_start.x, pt_start.y, pt_old.x, pt_old.y, brColor, penColor);
 		curr_length++;
 		InvalidateRect(hWnd, NULL, TRUE);
 	}

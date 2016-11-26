@@ -4,7 +4,7 @@ class CubeEditor :
 	public ShapeEditor
 {
 public:
-	CubeEditor();
+	CubeEditor(COLORREF,COLORREF);
 	~CubeEditor();
 	void OnLBup(HWND hWnd);
 	void OnInitMenuPopup(HWND hWnd, WPARAM wParam);

@@ -5,7 +5,7 @@ class LineEditor :
 	public ShapeEditor
 {
 public:
-	LineEditor();
+	LineEditor(COLORREF, COLORREF);
 	~LineEditor();
 	void OnLBup(HWND);
 	void OnMosuseMove(HWND);
