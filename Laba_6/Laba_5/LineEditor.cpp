@@ -20,6 +20,7 @@ void LineEditor::OnLBup(HWND hWnd)
 		ScreenToClient(hWnd, &pt);
 		ofstream fout("data_types.txt", ios_base::out | ios_base::app);
 		fout << "LineShape\t" << pt_start.x << "\t" << pt_start.y << "\t" << pt.x << "\t" << pt.y << endl;
+		AddToTable("Line", pt_start.x, pt_start.y, pt.x, pt.y);
 		pcshape[curr_length] = new LineShape();
 		pcshape[curr_length]->Set(pt_start.x, pt_start.y, pt.x, pt.y);
 		curr_length++;

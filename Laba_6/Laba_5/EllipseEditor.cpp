@@ -20,6 +20,7 @@ void EllipseEditor::OnLBup(HWND hWnd)
 		ScreenToClient(hWnd, &pt);
 		ofstream fout("data_types.txt", ios_base::out | ios_base::app);
 		fout << "EllipseShape\t" << pt_start.x << "\t" << pt_start.y << "\t" << pt.x << "\t" << pt.y << endl;
+		AddToTable("Ellipse", pt_start.x, pt_start.y, pt.x, pt.y);
 		pcshape[curr_length] = new EllipseShape();
 		pcshape[curr_length]->Set(pt_start.x, pt_start.y, pt.x, pt.y);
 		curr_length++;
