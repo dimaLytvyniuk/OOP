@@ -1,7 +1,7 @@
 #pragma once
 #include "LineShape.h"
 class PuncktLineShape :
-	public LineShape
+	public Shape
 {
 public:
 	PuncktLineShape();

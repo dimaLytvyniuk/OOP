@@ -14,6 +14,15 @@ CubeShape::~CubeShape()
 
 void CubeShape::Show(HDC hdc)
 {
+	HPEN hPenOld, hPen;
+	HBRUSH hBrush, hBrushOld;
+
+	hPen = CreatePen(PS_SOLID, 1, penColor);
+	hPenOld = (HPEN)SelectObject(hdc, hPen);
+
+	hBrush = (HBRUSH)CreateSolidBrush(brColor);
+	hBrushOld = (HBRUSH)SelectObject(hdc, hBrush);
+
 	int xs_B = xs2 + (xs1 - xs2) / 3,
 		ys_B = ys2 - (ys2 - ys1) / 3,
 		xs_D = xs1 - (xs1 - xs2) / 3,
@@ -62,5 +71,10 @@ void CubeShape::Show(HDC hdc)
 	pt_re[2].y = ys_C;
 	pt_re[3].y = ys_D;
 	Polygon(hdc, pt_re, 4);
+
+	SelectObject(hdc, hPenOld);
+	DeleteObject(hPen);
+	SelectObject(hdc, hBrushOld);
+	DeleteObject(hBrush);
 }
 

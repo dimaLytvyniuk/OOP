@@ -4,7 +4,7 @@
 
 RombShape::RombShape()
 {
-	type = "Romb\0";
+	type = "Romb";
 }
 
 
@@ -14,6 +14,15 @@ RombShape::~RombShape()
 
 void RombShape::Show(HDC hdc)
 {
+	HPEN hPenOld, hPen;
+	HBRUSH hBrush, hBrushOld;
+
+	hPen = CreatePen(PS_SOLID, 1, penColor);
+	hPenOld = (HPEN)SelectObject(hdc, hPen);
+
+	hBrush = (HBRUSH)CreateSolidBrush(brColor);
+	hBrushOld = (HBRUSH)SelectObject(hdc, hBrush);
+
 	POINT pt_re[4];
 	int xs_A = xs1 - (xs2 - xs1),
 		ys_A = ys2,
@@ -29,4 +38,9 @@ void RombShape::Show(HDC hdc)
 	pt_re[2].y = ys2;
 	pt_re[3].y = ys1;
 	Polygon(hdc, pt_re, 4);
+
+	SelectObject(hdc, hPenOld);
+	DeleteObject(hPen);
+	SelectObject(hdc, hBrushOld);
+	DeleteObject(hBrush);
 }

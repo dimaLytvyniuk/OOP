@@ -24,6 +24,7 @@ void RombEditor::OnInitMenuPopup(HWND hWnd, WPARAM wParam)
 		CheckMenuItem(hSubMenu, IDM_ELLIPSE, MF_UNCHECKED); //позначити цей пункт
 		CheckMenuItem(hSubMenu, IDM_CUBE, MF_UNCHECKED);
 		CheckMenuItem(hSubMenu, IDM_CILINDER, MF_UNCHECKED);
+		CheckMenuItem(hSubMenu, IDM_PUNKT, MF_UNCHECKED);
 	}
 }
 
@@ -35,6 +36,7 @@ void RombEditor::PressButton(HWND hWnd)
 	SendMessage(hWnd, TB_PRESSBUTTON, IDB_ELLIPSE, false);
 	SendMessage(hWnd, TB_PRESSBUTTON, IDB_CUBE, false);
 	SendMessage(hWnd, TB_PRESSBUTTON, IDB_CILINDER, false);
+	SendMessage(hWnd, TB_PRESSBUTTON, IDB_PUNCKT, false);
 }
 
 void RombEditor::OnLBup(HWND hWnd)

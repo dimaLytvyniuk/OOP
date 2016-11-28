@@ -14,12 +14,21 @@ RectShape::~RectShape()
 
 void RectShape::Show(HDC hdc)
 {
-	//HBRUSH hBrush, hBrushOld;
-	//hBrush = (HBRUSH)CreateSolidBrush(RGB(0,255,0));	
-	//hBrushOld = (HBRUSH)SelectObject(hdc, hBrush);
+	HPEN hPenOld, hPen;
+	HBRUSH hBrush, hBrushOld;
+
+	hPen = CreatePen(PS_SOLID, 1, penColor);
+	hPenOld = (HPEN)SelectObject(hdc, hPen);
+
+	hBrush = (HBRUSH)CreateSolidBrush(brColor);
+	hBrushOld = (HBRUSH)SelectObject(hdc, hBrush);
+
 	Rectangle(hdc,xs1, ys1, xs2, ys2);
-	//SelectObject(hdc, hBrushOld);
-	//DeleteObject(hBrush);
+
+	SelectObject(hdc, hPenOld);
+	DeleteObject(hPen);
+	SelectObject(hdc, hBrushOld);
+	DeleteObject(hBrush);
 }
 
 void RectShape::Show_1(HDC hdc)
@@ -44,7 +53,7 @@ void RectShape::Show_1(HDC hdc)
 	}
 
 	HBRUSH hBrush, hBrushOld;
-	hBrush = (HBRUSH)CreateSolidBrush(RGB(0, 0, 0));
+	hBrush = (HBRUSH)CreateSolidBrush(brColor);
 	hBrushOld = (HBRUSH)SelectObject(hdc, hBrush);
 	FrameRect(hdc, &rt, hBrush);
 	SelectObject(hdc, hBrushOld);
