@@ -87,6 +87,7 @@ void CubeEditor::OnInitMenuPopup(HWND hWnd, WPARAM wParam)
 		CheckMenuItem(hSubMenu, IDM_ELLIPSE, MF_UNCHECKED); //позначити цей пункт
 		CheckMenuItem(hSubMenu, IDM_CUBE, MF_CHECKED);
 		CheckMenuItem(hSubMenu, IDM_CILINDER, MF_UNCHECKED);
+		CheckMenuItem(hSubMenu, IDM_PUNKT, MF_UNCHECKED);
 	}
 }
 
@@ -98,4 +99,5 @@ void CubeEditor::PressButton(HWND hWnd)
 	SendMessage(hWnd, TB_PRESSBUTTON, IDB_ELLIPSE, false);
 	SendMessage(hWnd, TB_PRESSBUTTON, IDB_CUBE, true);
 	SendMessage(hWnd, TB_PRESSBUTTON, IDB_CILINDER, false);
+	SendMessage(hWnd, TB_PRESSBUTTON, IDB_PUNCKT, false);
 }
