@@ -190,7 +190,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			switch (lpttt->hdr.idFrom)
 			{
 			case IDB_ROMB:
-				pText = "Ромб";
+				pText = "Ðîìá";
 				break;
 			case IDB_LINE:
 				pText = "Ë³í³ÿ";
