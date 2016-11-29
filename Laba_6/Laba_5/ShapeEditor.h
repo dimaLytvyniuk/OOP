@@ -12,6 +12,7 @@
 #include "ToolBar.h"
 #include "LineOOShape.h"
 #include "CubeShape.h"
+#include "history_sheet.h"
 
 class ShapeEditor : 
 	public Editor

@@ -22,6 +22,7 @@ void PointEditor::OnLBup(HWND hWnd)
 		GetCursorPos(&pt);
 		ofstream fout("data_types.txt", ios_base::out | ios_base::app);
 		fout << "PointShape\t" << pt_start.x << "\t" << pt_start.y << "\t" << pt.x << "\t" << pt.y << endl;
+		AddToTable("Point", pt_start.x, pt_start.y, pt.x, pt.y);
 		ScreenToClient(hWnd, &pt);
 		pcshape[curr_length]->Set(pt.x, pt.y, 0, 0);
 		curr_length++;

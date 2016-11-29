@@ -39,6 +39,7 @@ void RectEditor::OnLBup(HWND hWnd)
 		ScreenToClient(hWnd, &pt);
 		ofstream fout("data_types.txt", ios_base::out | ios_base::app);
 		fout << "RectShape\t" << pt_start.x << "\t" << pt_start.y << "\t" << pt.x << "\t" << pt.y << endl;
+		AddToTable("Rect", pt_start.x, pt_start.y, pt.x, pt.y);
 		pcshape[curr_length] = new RectShape();
 		pcshape[curr_length]->Set(pt_start.x , pt_start.y , pt_old.x, pt_old.y);
 		curr_length++;

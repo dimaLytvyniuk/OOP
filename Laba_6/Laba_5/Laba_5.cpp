@@ -15,6 +15,7 @@ TBBUTTON tbb_1[] = {
 	{ 4, IDB_CUBE, TBSTATE_ENABLED, TBSTYLE_BUTTON, 0, 0, 0, 0 },
 	{ 5, IDB_LINEOO, TBSTATE_ENABLED, TBSTYLE_BUTTON, 0, 0, 0, 0 },
 };
+HWND hWndTable;
 
 // √лобальные переменные:
 HINSTANCE hInst;                                // текущий экземпл€р
@@ -144,6 +145,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	case WM_CREATE:
 		hWndToolBar = CreateToolbarEx(hWnd, TBSTYLE_TOOLTIPS | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_CLIPSIBLINGS | CCS_TOP, 1, 6,
 			hInst, IDB_BITMAP1, tbb_1, 6, 25, 25, 25, 25, sizeof(TBBUTTON));
+		hWndTable = CreateDialog(hInst, MAKEINTRESOURCE(IDD_DIALOG1), hWnd, SheetDialog);
 		break;
 	case WM_SIZE:
 		OnSize(hWnd, hWndToolBar);
@@ -253,8 +255,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             case IDM_ABOUT:
                 DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
                 break;
-			case IDM_SHEET:
-				CreateDialog(hInst, MAKEINTRESOURCE(IDD_DIALOG1), hWnd, SheetDialog);
+			case IDM_SHEETOPEN:
+				ShowWindow(hWndTable, SW_SHOW);
+				SetFocus(hWndTable);
 				break;
             case IDM_EXIT:
                 DestroyWindow(hWnd);
@@ -307,18 +310,4 @@ void OnSize(HWND hWnd, HWND hWndToolBar)
 		GetWindowRect(hWndToolBar, &rw);
 		MoveWindow(hWndToolBar, 0, 0, rc.right - rc.left, rw.bottom - rw.top, FALSE);
 	}
-}
-
-INT_PTR CALLBACK SheetDialog(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
-{
-	UNREFERENCED_PARAMETER(lParam);
-	switch (message)
-	{
-	case WM_INITDIALOG:
-		return (INT_PTR)TRUE;
-
-	case WM_COMMAND:
-		break;
-	}
-	return (INT_PTR)FALSE;
 }
