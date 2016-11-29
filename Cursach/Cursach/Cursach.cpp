@@ -193,7 +193,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 				pText = "Ромб";
 				break;
 			case IDB_LINE:
-				pText = "Лінія";
+				pText = "Ë³í³ÿ";
 				break;
 			case IDB_RECT:
 				pText = "Ïðÿìîêóòíèê";
