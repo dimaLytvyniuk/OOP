@@ -40,7 +40,7 @@ void PuncktLineEditor::PressButton(HWND hWnd)
 	SendMessage(hWnd, TB_PRESSBUTTON, IDB_PUNCKT, true);
 }
 
-void PuncktLineEditor::OnLBup(HWND hWnd)
+void PuncktLineEditor::OnLBup(HWND hWnd, int xk, int yk)
 {
 	if (curr_length < MY_SHAPE_ARRAY_SIZE)
 	{
@@ -49,7 +49,7 @@ void PuncktLineEditor::OnLBup(HWND hWnd)
 		ScreenToClient(hWnd, &pt);
 		//PrintInFile("Пунктирна лінія", pt_start.x, pt_start.y, pt.x, pt.y);
 		pcshape[curr_length] = new PuncktLineShape();
-		pcshape[curr_length]->Set(pt_start.x, pt_start.y, pt.x, pt.y, brColor, penColor);
+		pcshape[curr_length]->Set(pt_start.x, pt_start.y, pt.x, pt.y, brColor, penColor, xk, yk);
 		curr_length++;
 		InvalidateRect(hWnd, NULL, TRUE);
 	}

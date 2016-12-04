@@ -30,7 +30,7 @@ void RectEditor::OnMosuseMove(HWND hWnd)
 	ReleaseDC(hWnd, hdc); //закриваємо контекст вікна
 }
 
-void RectEditor::OnLBup(HWND hWnd)
+void RectEditor::OnLBup(HWND hWnd, int xk, int yk)
 {
 	if (curr_length < MY_SHAPE_ARRAY_SIZE)
 	{
@@ -39,7 +39,7 @@ void RectEditor::OnLBup(HWND hWnd)
 		ScreenToClient(hWnd, &pt);
 		//PrintInFile("Прямокутник", pt_start.x, pt_start.y, pt.x, pt.y);
 		pcshape[curr_length] = new RectShape();
-		pcshape[curr_length]->Set(pt_start.x , pt_start.y , pt_old.x, pt_old.y, brColor, penColor);
+		pcshape[curr_length]->Set(pt_start.x , pt_start.y , pt_old.x, pt_old.y, brColor, penColor, xk, yk);
 		curr_length++;
 		InvalidateRect(hWnd, NULL, TRUE);
 	}

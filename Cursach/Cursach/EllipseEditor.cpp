@@ -11,7 +11,7 @@ EllipseEditor::~EllipseEditor()
 {
 }
 
-void EllipseEditor::OnLBup(HWND hWnd)
+void EllipseEditor::OnLBup(HWND hWnd, int xk, int yk)
 {
 	if (curr_length < MY_SHAPE_ARRAY_SIZE)
 	{
@@ -20,7 +20,7 @@ void EllipseEditor::OnLBup(HWND hWnd)
 		ScreenToClient(hWnd, &pt);
 		//PrintInFile("Елліпс", pt_start.x, pt_start.y, pt.x, pt.y);
 		pcshape[curr_length] = new EllipseShape();
-		pcshape[curr_length]->Set(pt_start.x, pt_start.y, pt.x, pt.y, brColor, penColor);
+		pcshape[curr_length]->Set(pt_start.x, pt_start.y, pt.x, pt.y, brColor, penColor, xk, yk);
 		curr_length++;
 		InvalidateRect(hWnd, NULL, TRUE);
 	}

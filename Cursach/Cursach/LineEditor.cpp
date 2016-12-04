@@ -11,7 +11,7 @@ LineEditor::~LineEditor()
 {
 }
 
-void LineEditor::OnLBup(HWND hWnd)
+void LineEditor::OnLBup(HWND hWnd, int xk, int yk)
 {
 	if (curr_length < MY_SHAPE_ARRAY_SIZE)
 	{
@@ -20,7 +20,7 @@ void LineEditor::OnLBup(HWND hWnd)
 		ScreenToClient(hWnd, &pt);
 		//PrintInFile("Лінія", pt_start.x, pt_start.y, pt.x, pt.y);
 		pcshape[curr_length] = new LineShape();
-		pcshape[curr_length]->Set(pt_start.x, pt_start.y, pt.x, pt.y, brColor, penColor);
+		pcshape[curr_length]->Set(pt_start.x, pt_start.y, pt.x, pt.y, brColor, penColor, xk, yk);
 		curr_length++;
 		InvalidateRect(hWnd, NULL, TRUE);
 	}

@@ -8,6 +8,6 @@ class LineShape :
 public:
 	LineShape();
 	~LineShape();
-	void Show(HDC hdc);
+	void Show(HDC hdc, int xk, int yk);
 };
 

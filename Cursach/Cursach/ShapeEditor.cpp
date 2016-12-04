@@ -16,12 +16,12 @@ ShapeEditor::ShapeEditor()
 	
 }
 
-void ShapeEditor::OnPaint(HWND hWnd,HDC hdc)
+void ShapeEditor::OnPaint(HWND hWnd,HDC hdc,int xk, int yk)
 {	
 	for (int i = 0; i < curr_length; i++)
 	{
 		if (pcshape[i])
-			pcshape[i]->Show(hdc);
+			pcshape[i]->Show(hdc,xk,yk);
 		
 	}
 }
@@ -33,7 +33,7 @@ void ShapeEditor::OnLBdown(HWND hWnd)
 	pt_old = pt_start; //кудись записуємо координати початкової точки
 }
 
-void ShapeEditor::OnLBup(HWND hWnd)
+void ShapeEditor::OnLBup(HWND hWnd, int xk, int yk)
 {
 	
 }
@@ -127,7 +127,7 @@ void ShapeEditor::ReadFromFile(char* name)
 
 				if (c_dots == 6)
 				{
-					pcshape[n]->Set(dots[0], dots[1], dots[2], dots[3],dots[4],dots[5]);
+					pcshape[n]->Set(dots[0], dots[1], dots[2], dots[3],dots[4],dots[5],0,0);
 					c_dots = 0;
 				}
 				else

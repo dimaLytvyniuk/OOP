@@ -11,7 +11,7 @@ CilinderEditor::CilinderEditor(COLORREF brushColor,COLORREF peColor):ShapeEditor
 CilinderEditor::~CilinderEditor()
 {
 }
-void CilinderEditor::OnLBup(HWND hWnd)
+void CilinderEditor::OnLBup(HWND hWnd, int xk, int yk)
 {
 	if (curr_length < MY_SHAPE_ARRAY_SIZE)
 	{
@@ -20,7 +20,7 @@ void CilinderEditor::OnLBup(HWND hWnd)
 		ScreenToClient(hWnd, &pt);
 		//PrintInFile("÷ил≥ндр", pt_start.x, pt_start.y, pt.x, pt.y);
 		pcshape[curr_length] = new CilinderShape();
-		pcshape[curr_length]->Set(pt_start.x, pt_start.y, pt_old.x, pt_old.y,brColor,penColor);
+		pcshape[curr_length]->Set(pt_start.x, pt_start.y, pt_old.x, pt_old.y,brColor,penColor,xk,yk);
 		curr_length++;
 		InvalidateRect(hWnd, NULL, TRUE);
 	}

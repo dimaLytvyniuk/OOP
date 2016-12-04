@@ -11,7 +11,7 @@ CubeEditor::~CubeEditor()
 {
 }
 
-void CubeEditor::OnLBup(HWND hWnd)
+void CubeEditor::OnLBup(HWND hWnd, int xk, int yk)
 {
 	if (curr_length < MY_SHAPE_ARRAY_SIZE)
 	{
@@ -20,7 +20,7 @@ void CubeEditor::OnLBup(HWND hWnd)
 		ScreenToClient(hWnd, &pt);
 		//PrintInFile("Êóá", pt_start.x, pt_start.y, pt.x, pt.y);
 		pcshape[curr_length] = new CubeShape();
-		pcshape[curr_length]->Set(pt_start.x, pt_start.y, pt_old.x, pt_old.y, brColor, penColor);
+		pcshape[curr_length]->Set(pt_start.x, pt_start.y, pt_old.x, pt_old.y, brColor, penColor, xk, yk);
 		curr_length++;
 		InvalidateRect(hWnd, NULL, TRUE);
 	}

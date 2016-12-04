@@ -1,12 +1,12 @@
 #include "stdafx.h"
 #include "Shape.h"
 
-void Shape::Set(long x1, long y1, long x2, long y2,COLORREF brushColor,COLORREF peColor)
+void Shape::Set(long x1, long y1, long x2, long y2,COLORREF brushColor,COLORREF peColor, int xk, int yk)
 {
-	xs1 = x1;
-	ys1 = y1;
-	xs2 = x2;
-	ys2 = y2;
+	xs1 = x1 - xk;
+	ys1 = y1 - yk;
+	xs2 = x2 - xk;
+	ys2 = y2 - yk;
 	brColor = brushColor;
 	penColor = peColor;
 }

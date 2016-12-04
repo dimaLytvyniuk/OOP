@@ -7,7 +7,7 @@ class LineEditor :
 public:
 	LineEditor(COLORREF, COLORREF);
 	~LineEditor();
-	void OnLBup(HWND);
+	void OnLBup(HWND, int xk, int yk);
 	void OnMosuseMove(HWND);
 	//void OnPaint(HWND);
 	void OnInitMenuPopup(HWND, WPARAM);

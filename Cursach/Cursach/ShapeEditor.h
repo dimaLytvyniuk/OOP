@@ -30,10 +30,9 @@ public:
 	ShapeEditor(COLORREF,COLORREF);
 	ShapeEditor();
     void OnLBdown(HWND);
-	void OnLBup(HWND);
+	void OnLBup(HWND, int xk, int yk);
 	void OnMosuseMove(HWND);
-	void OnPaint(HWND,HDC);
-	void PrintInFile(char *,int x1,int y1,int x2,int y2);
+	void OnPaint(HWND,HDC,int xk, int yk);
 	void PrintInFile(char *);
 	void ReadFromFile(char*);
 	virtual void OnInitMenuPopup(HWND, WPARAM);

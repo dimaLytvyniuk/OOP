@@ -6,6 +6,7 @@
 #include "ToolBar.h"
 #include <fstream>
 #include <commdlg.h>
+#include "ScrollOperations.h"
 
 #define MAX_LOADSTRING 100
 
@@ -34,6 +35,7 @@ ShapeObjectEditor obj_editor;
 void OnSize(HWND hWnd, HWND hWndToolBar);
 COLORREF stdColor = RGB(255, 255, 255);
 COLORREF penColor = RGB(0, 0, 0);
+ScrollOperations doc;
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
@@ -115,7 +117,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
    hInst = hInstance; // Ñîõðàíèòü äåñêðèïòîð ýêçåìïëÿðà â ãëîáàëüíîé ïåðåìåííîé
 
-   HWND hWnd = CreateWindowW(szWindowClass, LPCWSTR("Курсова робота"), WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN,
+   HWND hWnd = CreateWindowW(szWindowClass, LPCWSTR("Курсова робота"), WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN | WS_VSCROLL | WS_HSCROLL,
       CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
 
    if (!hWnd)
@@ -149,6 +151,13 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		penCCS;
 	static COLORREF acrCustClr[16];
 	static HBRUSH hBrush;
+	int xClient = 0,
+		yClient = 0;
+	static int xInc, yInc,
+		currX = 0,
+		currY = 0;
+	
+	HDC hDc;
 
     switch (message)
     {
@@ -177,8 +186,55 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 		break;
 	case WM_SIZE:
-		OnSize(hWnd, hWndToolBar);
+		//OnSize(hWnd, hWndToolBar);
+		SendMessage(hWndToolBar,TB_AUTOSIZE, 0,0);
+		hDc = GetDC(hWnd);
+		xClient = LOWORD(lParam);
+		yClient = HIWORD(lParam);
+		if (xClient > 0)
+			doc.ScrollSettings(hWnd, xClient, yClient);
+		ReleaseDC(hWnd, hDc);
 		break;
+	case WM_VSCROLL:
+		switch (LOWORD(wParam)) {
+		case SB_LINEUP:
+			yInc = -1; break;
+		case SB_LINEDOWN:
+			yInc - 1;
+			break;
+		case SB_PAGEUP:
+			yInc = -(int)doc.vsi.nPage; break;
+		case SB_PAGEDOWN:
+			yInc = (int)doc.vsi.nPage; break;
+		case SB_THUMBTRACK:
+			yInc = HIWORD(wParam) - doc.vsi.nPos; break;
+		default: yInc = 0;
+		}
+		doc.UpdateVscroll(hWnd, yInc);
+		currY = -doc.vsi.nPos * doc.yStep;
+		break;
+	case WM_HSCROLL:
+			switch (LOWORD(wParam)) 
+			{
+			case SB_LINELEFT:
+				xInc = -1; break;
+			case SB_LINERIGHT:
+				xInc = 1; 
+				break;
+			case SB_PAGELEFT:
+				xInc = - (int)doc.hsi.nPage; 
+				break;
+			case SB_PAGERIGHT:
+				xInc = (int)doc.hsi.nPage; 
+				break;
+			case SB_THUMBTRACK:
+				xInc = HIWORD(wParam) - doc.hsi.nPos;
+				break;
+				default: xInc = 0;
+			}
+			doc.UpdateHscroll(hWnd, xInc);
+			currX = -doc.hsi.nPos * doc.xStep;
+			break;
 	case WM_NOTIFY:
 	{
 		//OnNotify(hWnd, wParam, lParam);
@@ -196,7 +252,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 				pText = "Лінія";
 				break;
 			case IDB_RECT:
-				pText = "Ïðÿìîêóòíèê";
+				pText = "Ïðÿìî";
 				break;
 			case IDB_ELLIPSE:
 				pText = "Åëë³ïñ";
@@ -222,7 +278,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		obj_editor.OnLBdown(hWnd);
 		break;
 	case WM_LBUTTONUP:
-		obj_editor.OnLBup(hWnd);
+		obj_editor.OnLBup(hWnd, currX, currY);
 		break;
 	case WM_MOUSEMOVE:
 		obj_editor.OnMosuseMove(hWnd);
@@ -336,7 +392,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			HDC hdc;
 
 			hdc = BeginPaint(hWnd, &ps);
-			obj_editor.OnPaint(hWnd,hdc);
+			obj_editor.OnPaint(hWnd,hdc,currX,currY);
 			EndPaint(hWnd, &ps);
         }
         break;

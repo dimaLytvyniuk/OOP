@@ -6,6 +6,6 @@ class RombShape :
 public:
 	RombShape();
 	~RombShape();
-	void Show(HDC);
+	void Show(HDC, int xk, int yk);
 };
 

@@ -83,11 +83,11 @@ void ShapeObjectEditor::OnLBdown(HWND hWnd)
 	}
 }
 
-void ShapeObjectEditor::OnLBup(HWND hWnd)
+void ShapeObjectEditor::OnLBup(HWND hWnd, int xk, int yk)
 {
 	if (pse)
 	{
-		pse->OnLBup(hWnd);
+		pse->OnLBup(hWnd,xk,yk);
 		onLBup = true;
 		onLBdown = false;
 	}
@@ -99,10 +99,10 @@ void ShapeObjectEditor::OnMosuseMove(HWND hWnd)
 		pse->OnMosuseMove(hWnd);
 }
 
-void ShapeObjectEditor::OnPaint(HWND hWnd,HDC hdc)
+void ShapeObjectEditor::OnPaint(HWND hWnd,HDC hdc,int xk, int yk)
 {
 	if (pse)
-		pse->OnPaint(hWnd,hdc);
+		pse->OnPaint(hWnd,hdc,xk,yk);
 }
 
 void ShapeObjectEditor::OninitMenuPopup(HWND hWnd, WPARAM hWparam)

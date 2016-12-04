@@ -26,9 +26,9 @@ class ShapeObjectEditor
 		void StartReadFile(TCHAR*);
 		void Reset(HWND,WPARAM,HWND);
 		void OnLBdown(HWND);
-		void OnLBup(HWND);
+		void OnLBup(HWND, int xk, int yk);
 		void OnMosuseMove(HWND);
-		void OnPaint(HWND,HDC);
+		void OnPaint(HWND,HDC, int xk, int yk);
 		void OninitMenuPopup(HWND, WPARAM);
 		void PressButton(HWND);
 };
