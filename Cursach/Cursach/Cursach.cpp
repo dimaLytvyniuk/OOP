@@ -137,22 +137,23 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	static OPENFILENAME file;
 	static CHOOSECOLOR ccs,//заливка
 		penCCS;//контур
-	static COLORREF acrCustClr[16];//
+	static COLORREF acrCustClr[16];
 	static HBRUSH hBrush;
 	int xClient = 0,
 		yClient = 0;
 	static int xInc, yInc,
 		currX = 0,//х позиція скролл бару
-		currY = 0;//у позиція скролл
-	static COLORREF stdColor = RGB(255, 255, 255);
-	static COLORREF penColor = RGB(0, 0, 0);
+		currY = 0;//у позиція скролл бару
+	static COLORREF stdColor = RGB(255, 255, 255);//початковий колір заливки
+	static COLORREF penColor = RGB(0, 0, 0);//початковий колір контуру
 	HDC hDc;
 
     switch (message)
     {
 	case WM_CREATE:
-		hWndToolBar = CreateToolbarEx(hWnd, TBSTYLE_TOOLTIPS | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_CLIPSIBLINGS , 1, 9,hInst, IDB_BITMAP1, tbb_1, 9, 25, 25, 25, 25, sizeof(TBBUTTON));
+		hWndToolBar = CreateToolbarEx(hWnd, TBSTYLE_TOOLTIPS | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_CLIPSIBLINGS , 1, 9,hInst, IDB_BITMAP1, tbb_1, 9, 25, 25, 25, 25, sizeof(TBBUTTON));//створення панелі інструментів
 
+		//ініціалізація file
 		file.lStructSize = sizeof(OPENFILENAME);
 		file.hInstance = hInst;
 		file.lpstrFilter = _T("Text\0*.txt");
@@ -161,12 +162,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		file.lpstrInitialDir = _T(".\\");
 		file.lpstrDefExt = _T("txt");
 
+		//ініціалізація ccs
 		ccs.lStructSize = sizeof(CHOOSECOLOR);
 		ccs.hwndOwner = hWnd;
 		ccs.rgbResult = stdColor;
 		ccs.Flags = CC_RGBINIT | CC_FULLOPEN;
 		ccs.lpCustColors = (LPDWORD)acrCustClr;
 
+		//ініціалізація penCCS
 		penCCS.lStructSize = sizeof(CHOOSECOLOR);
 		penCCS.hwndOwner = hWnd;
 		penCCS.rgbResult = penColor;
@@ -230,6 +233,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			break;
 	case WM_NOTIFY:
 	{
+		//TOOLTIPS
 		LPNMHDR pnmh = (LPNMHDR)lParam;
 		LPSTR pText;
 		if (pnmh->code == TTN_NEEDTEXT)

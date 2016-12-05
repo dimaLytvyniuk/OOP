@@ -182,3 +182,8 @@ void ShapeEditor::PressButton(HWND hWnd)
 {
 
 }
+
+void ShapeEditor::OverMeesage()
+{
+	MessageBox(0, "Закінчилось місце для фігур", "Курсова робота", 0);
+}

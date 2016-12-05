@@ -27,6 +27,7 @@ void RombEditor::OnInitMenuPopup(HWND hWnd, WPARAM wParam)
 		CheckMenuItem(hSubMenu, IDM_CILINDER, MF_UNCHECKED);
 		CheckMenuItem(hSubMenu, IDM_PUNKT, MF_UNCHECKED);
 	}
+
 }
 
 //позначає вибраний елемент на панелі інструментів 
@@ -58,8 +59,11 @@ void RombEditor::OnLBup(HWND hWnd, int xk, int yk)
 		pcshape[curr_length] = new RombShape();
 		pcshape[curr_length]->Set(pt_start.x, pt_start.y, pt_old.x, pt_old.y, brColor, penColor, xk, yk);//ініціалізація змінної 
 		curr_length++;//збільшення лічильника елементів у массиві pcshape
-		InvalidateRect(hWnd, NULL, TRUE);//вікликається WM_PAINT
 	}
+	else
+		OverMeesage();
+
+	InvalidateRect(hWnd, NULL, TRUE);//вікликається WM_PAINT
 }
 
 //функція орбробки повідомлення руху миші

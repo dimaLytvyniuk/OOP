@@ -34,6 +34,7 @@ public:
 	void PrintInFile(char *);//записуЇ у файл масив pcshape
 	void ReadFromFile(char*);//зчитуЇ з файлу у масив pcshape
 	virtual void OnInitMenuPopup(HWND, WPARAM);//позначаЇ вибраний елемент у меню
-	virtual void PressButton(HWND);//позначаЇ вибраний елемент на панел≥ ≥нструмент≥в 
+	virtual void PressButton(HWND);//позначаЇ вибраний елемент на панел≥ ≥нструмент≥в
+	void OverMeesage();//пов≥домленн€ про зак≥нченн€ м≥сц€ у масив≥ pcshape
 };
 #endif !defined(SHAPEDITOR_H)

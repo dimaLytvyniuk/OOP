@@ -27,8 +27,11 @@ void EllipseEditor::OnLBup(HWND hWnd, int xk, int yk)
 		pcshape[curr_length] = new EllipseShape();
 		pcshape[curr_length]->Set(pt_start.x, pt_start.y, pt.x, pt.y, brColor, penColor, xk, yk);//ініціалізація змінної 
 		curr_length++;//збільшення лічильника елементів у массиві pcshape
-		InvalidateRect(hWnd, NULL, TRUE);//вікликається WM_PAINT
 	}
+	else
+		OverMeesage();
+
+	InvalidateRect(hWnd, NULL, TRUE);//вікликається WM_PAINT
 }
 
 //функція орбробки повідомлення руху миші
