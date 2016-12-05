@@ -12,6 +12,11 @@ CilinderShape::~CilinderShape()
 {
 }
 
+/*
+	* малює об'єкт shape
+	* xk - зміщення по х
+	* yk - зміщення по у
+	*/
 void CilinderShape::Show(HDC hdc, int xk, int yk)
 {
 	HPEN hPenOld, hPen;
@@ -23,6 +28,7 @@ void CilinderShape::Show(HDC hdc, int xk, int yk)
 	hBrush = (HBRUSH)CreateSolidBrush(brColor);
 	hBrushOld = (HBRUSH)SelectObject(hdc, hBrush);
 
+	//прорахунок координат фігури
 	int xs_1 = xs1 + xk,
 		xs_2 = xs2 + xk,
 		ys_1 = ys1 + yk,
@@ -38,7 +44,8 @@ void CilinderShape::Show(HDC hdc, int xk, int yk)
 		xs_E = xs_B,
 		ys_E = ys_D,
 		koef = -2;
-	Ellipse(hdc, xs_B, ys_B, xs_2, ys_2);//нижний еллипс
+
+	Ellipse(hdc, xs_B, ys_B, xs_2, ys_2);
 	Rectangle(hdc, xs_C, ys_C, xs_D, ys_D);
 	Ellipse(hdc, xs_1, ys_1, xs_A, ys_A);
 

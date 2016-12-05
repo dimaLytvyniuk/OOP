@@ -11,8 +11,14 @@ LineEditor::~LineEditor()
 {
 }
 
+/*
+	* функція орбробки повідомлення натиснення лівої клавіши миші
+	* xk - зміщення по х
+	* yk - зміщення по у
+	*/
 void LineEditor::OnLBup(HWND hWnd, int xk, int yk)
 {
+	//перевірка наявності місця у масиві
 	if (curr_length < MY_SHAPE_ARRAY_SIZE)
 	{
 		POINT pt;
@@ -20,12 +26,13 @@ void LineEditor::OnLBup(HWND hWnd, int xk, int yk)
 		ScreenToClient(hWnd, &pt);
 		//PrintInFile("Лінія", pt_start.x, pt_start.y, pt.x, pt.y);
 		pcshape[curr_length] = new LineShape();
-		pcshape[curr_length]->Set(pt_start.x, pt_start.y, pt.x, pt.y, brColor, penColor, xk, yk);
-		curr_length++;
-		InvalidateRect(hWnd, NULL, TRUE);
+		pcshape[curr_length]->Set(pt_start.x, pt_start.y, pt.x, pt.y, brColor, penColor, xk, yk);//ініціалізація змінної 
+		curr_length++;//збільшення лічильника елементів у массиві pcshape
+		InvalidateRect(hWnd, NULL, TRUE);//вікликається WM_PAINT
 	}
 }
 
+//функція орбробки повідомлення руху миші
 void LineEditor::OnMosuseMove(HWND hWnd)
 {
 	
@@ -36,20 +43,25 @@ void LineEditor::OnMosuseMove(HWND hWnd)
 	SetROP2(hdc, R2_NOTXORPEN);
 	hPen = CreatePen(PS_DOT, 1, 0);
 	hPenOld = (HPEN)SelectObject(hdc, hPen);
+	
+	//замальовується стара фігура
 	MoveToEx(hdc, pt_start.x, pt_start.y, NULL);
 	LineTo(hdc, pt_old.x, pt_old.y);
-	//Малюються лінії "гумового" сліду попереднього розташування курсору
+
 	GetCursorPos(&pt);
 	ScreenToClient(hWnd, &pt);
 	pt_old = pt;
+
+	//малюється новий гумовий слід
 	MoveToEx(hdc, pt_start.x, pt_start.y, NULL);
-	LineTo(hdc, pt.x, pt.y); //Малюються лінії "гумового" сліду для поточного розташування курсору
-							 //ShapeShadow(hdc);
+	LineTo(hdc, pt.x, pt.y); 
+
 	SelectObject(hdc, hPenOld);
 	DeleteObject(hPen);
 	ReleaseDC(hWnd, hdc);
 }
 
+//позначає вибраний елемент у меню
 void LineEditor::OnInitMenuPopup(HWND hWnd, WPARAM wParam)
 {
 	HMENU hMenu, hSubMenu;
@@ -67,6 +79,7 @@ void LineEditor::OnInitMenuPopup(HWND hWnd, WPARAM wParam)
 	}
 }
 
+//позначає вибраний елемент на панелі інструментів 
 void LineEditor::PressButton(HWND hWnd)
 {
 	SendMessage(hWnd, TB_PRESSBUTTON, IDB_ROMB, false);

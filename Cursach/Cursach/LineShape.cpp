@@ -12,6 +12,11 @@ LineShape::~LineShape()
 {
 }
 
+/*
+* малює об'єкт shape
+* xk - зміщення по х
+* yk - зміщення по у
+*/
 void LineShape::Show(HDC hdc, int xk, int yk)
 {
 	HPEN hPenOld, hPen;

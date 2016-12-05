@@ -10,32 +10,22 @@
 
 #define MAX_LOADSTRING 100
 
-TBBUTTON tbb_1[] = {
-	{ 0,IDB_RECT,TBSTATE_ENABLED,TBSTYLE_BUTTON,0,0,0,0 },
-	{ 1, IDB_ELLIPSE, TBSTATE_ENABLED, TBSTYLE_BUTTON, 0, 0, 0, 0 },
-	{ 2, IDB_LINE, TBSTATE_ENABLED, TBSTYLE_BUTTON, 0, 0, 0, 0 },
-	{ 3, IDB_CUBE, TBSTATE_ENABLED, TBSTYLE_BUTTON, 0, 0, 0, 0 },
-	{ 4, IDB_PUNCKT, TBSTATE_ENABLED, TBSTYLE_BUTTON, 0, 0, 0, 0 },
-	{ 5, IDB_ROMB, TBSTATE_ENABLED, TBSTYLE_BUTTON, 0, 0, 0, 0 },
-	{ 6, IDB_CILINDER, TBSTATE_ENABLED, TBSTYLE_BUTTON, 0, 0, 0, 0 },
-};
 
-// Ãëîáàëüíûå ïåðåìåííûå:
-HINSTANCE hInst;                                // òåêóùèé ýêçåìïëÿð
-WCHAR szTitle[MAX_LOADSTRING];// Òåêñò ñòðîêè çàãîëîâêà
-WCHAR szWindowClass[MAX_LOADSTRING];            // èìÿ êëàññà ãëàâíîãî îêíà
 
-// Îòïðàâèòü îáúÿâëåíèÿ ôóíêöèé, âêëþ÷åííûõ â ýòîò ìîäóëü êîäà:
+// Глобальные переменные:
+HINSTANCE hInst;                                // текущий экземпляр
+WCHAR szTitle[MAX_LOADSTRING];                  // Текст строки заголовка
+WCHAR szWindowClass[MAX_LOADSTRING];            // имя класса главного окна
+ShapeObjectEditor obj_editor;					// керуючий об'єкт
+ScrollOperations doc;							// керрування скроллінгом
+
+// Отправить объявления функций, включенных в этот модуль кода:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 
-ShapeObjectEditor obj_editor;
-void OnSize(HWND hWnd, HWND hWndToolBar);
-COLORREF stdColor = RGB(255, 255, 255);
-COLORREF penColor = RGB(0, 0, 0);
-ScrollOperations doc;
+
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
@@ -45,14 +35,12 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
 
-    // TODO: ðàçìåñòèòå êîä çäåñü.
-
-    // Èíèöèàëèçàöèÿ ãëîáàëüíûõ ñòðîê
+	// Инициализация глобальных строк
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
     LoadStringW(hInstance, IDC_CURSACH, szWindowClass, MAX_LOADSTRING);
     MyRegisterClass(hInstance);
 
-    // Âûïîëíèòü èíèöèàëèçàöèþ ïðèëîæåíèÿ:
+	// Выполнить инициализацию приложения:
     if (!InitInstance (hInstance, nCmdShow))
     {
         return FALSE;
@@ -62,7 +50,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     MSG msg;
 
-    // Öèêë îñíîâíîãî ñîîáùåíèÿ:
+	// Цикл основного сообщения:
     while (GetMessage(&msg, nullptr, 0, 0))
     {
         if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
@@ -78,9 +66,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
 
 //
-//  ÔÓÍÊÖÈß: MyRegisterClass()
+//  ФУНКЦИЯ: MyRegisterClass()
 //
-//  ÍÀÇÍÀ×ÅÍÈÅ: ðåãèñòðèðóåò êëàññ îêíà.
+//  НАЗНАЧЕНИЕ: регистрирует класс окна.
 //
 ATOM MyRegisterClass(HINSTANCE hInstance)
 {
@@ -104,18 +92,18 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
 }
 
 //
-//   ÔÓÍÊÖÈß: InitInstance(HINSTANCE, int)
+//   ФУНКЦИЯ: InitInstance(HINSTANCE, int)
 //
-//   ÍÀÇÍÀ×ÅÍÈÅ: ñîõðàíÿåò îáðàáîòêó ýêçåìïëÿðà è ñîçäàåò ãëàâíîå îêíî.
+//   НАЗНАЧЕНИЕ: сохраняет обработку экземпляра и создает главное окно.
 //
-//   ÊÎÌÌÅÍÒÀÐÈÈ:
+//   КОММЕНТАРИИ:
 //
-//        Â äàííîé ôóíêöèè äåñêðèïòîð ýêçåìïëÿðà ñîõðàíÿåòñÿ â ãëîáàëüíîé ïåðåìåííîé, à òàêæå
-//        ñîçäàåòñÿ è âûâîäèòñÿ íà ýêðàí ãëàâíîå îêíî ïðîãðàììû.
+//        В данной функции дескриптор экземпляра сохраняется в глобальной переменной, а также
+//        создается и выводится на экран главное окно программы.
 //
 BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
-   hInst = hInstance; // Ñîõðàíèòü äåñêðèïòîð ýêçåìïëÿðà â ãëîáàëüíîé ïåðåìåííîé
+   hInst = hInstance;  // Сохранить дескриптор экземпляра в глобальной переменной
 
    HWND hWnd = CreateWindowW(szWindowClass, LPCWSTR("Курсова робота"), WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN | WS_VSCROLL | WS_HSCROLL,
       CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
@@ -133,36 +121,37 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 }
 
 //
-//  ÔÓÍÊÖÈß: WndProc(HWND, UINT, WPARAM, LPARAM)
+//  ФУНКЦИЯ: WndProc(HWND, UINT, WPARAM, LPARAM)
 //
-//  ÍÀÇÍÀ×ÅÍÈÅ:  îáðàáàòûâàåò ñîîáùåíèÿ â ãëàâíîì îêíå.
+//  НАЗНАЧЕНИЕ:  обрабатывает сообщения в главном окне.
 //
-//  WM_COMMAND — îáðàáîòàòü ìåíþ ïðèëîæåíèÿ
-//  WM_PAINT — îòðèñîâàòü ãëàâíîå îêíî
-//  WM_DESTROY — îòïðàâèòü ñîîáùåíèå î âûõîäå è âåðíóòüñÿ
+//  WM_COMMAND — обработать меню приложения
+//  WM_PAINT — отрисовать главное окно
+//  WM_DESTROY — отправить сообщение о выходе и вернуться
 //
 //
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-	static HWND hWndToolBar;
-	static TCHAR name[256] = _T("");
+	static HWND hWndToolBar;// панель інструментів
+	static TCHAR name[256] = _T(""); //ім'я файлу для запису та зберігання
 	static OPENFILENAME file;
-	static CHOOSECOLOR ccs,
-		penCCS;
-	static COLORREF acrCustClr[16];
+	static CHOOSECOLOR ccs,//заливка
+		penCCS;//контур
+	static COLORREF acrCustClr[16];//
 	static HBRUSH hBrush;
 	int xClient = 0,
 		yClient = 0;
 	static int xInc, yInc,
-		currX = 0,
-		currY = 0;
-	
+		currX = 0,//х позиція скролл бару
+		currY = 0;//у позиція скролл
+	static COLORREF stdColor = RGB(255, 255, 255);
+	static COLORREF penColor = RGB(0, 0, 0);
 	HDC hDc;
 
     switch (message)
     {
 	case WM_CREATE:
-		hWndToolBar = CreateToolbarEx(hWnd, TBSTYLE_TOOLTIPS | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_CLIPSIBLINGS | CCS_TOP, 1, 7,hInst, IDB_BITMAP1, tbb_1, 7, 25, 25, 25, 25, sizeof(TBBUTTON));
+		hWndToolBar = CreateToolbarEx(hWnd, TBSTYLE_TOOLTIPS | WS_CHILD | WS_VISIBLE | WS_BORDER | WS_CLIPSIBLINGS , 1, 9,hInst, IDB_BITMAP1, tbb_1, 9, 25, 25, 25, 25, sizeof(TBBUTTON));
 
 		file.lStructSize = sizeof(OPENFILENAME);
 		file.hInstance = hInst;
@@ -180,13 +169,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 		penCCS.lStructSize = sizeof(CHOOSECOLOR);
 		penCCS.hwndOwner = hWnd;
-		penCCS.rgbResult = stdColor;
+		penCCS.rgbResult = penColor;
 		penCCS.Flags = CC_RGBINIT | CC_FULLOPEN;
 		penCCS.lpCustColors = (LPDWORD)acrCustClr;
-
 		break;
 	case WM_SIZE:
-		//OnSize(hWnd, hWndToolBar);
 		SendMessage(hWndToolBar,TB_AUTOSIZE, 0,0);
 		hDc = GetDC(hWnd);
 		xClient = LOWORD(lParam);
@@ -198,20 +185,25 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	case WM_VSCROLL:
 		switch (LOWORD(wParam)) {
 		case SB_LINEUP:
-			yInc = -1; break;
+			yInc = -1; 
+			break;
 		case SB_LINEDOWN:
-			yInc - 1;
+			yInc = 1;
 			break;
 		case SB_PAGEUP:
-			yInc = -(int)doc.vsi.nPage; break;
+			yInc = -(int)doc.GetyPage(); 
+			break;
 		case SB_PAGEDOWN:
-			yInc = (int)doc.vsi.nPage; break;
+			yInc = (int)doc.GetyPage(); 
+			break;
 		case SB_THUMBTRACK:
-			yInc = HIWORD(wParam) - doc.vsi.nPos; break;
+			yInc = HIWORD(wParam) - doc.GetVSIpos();
+			break;
 		default: yInc = 0;
 		}
 		doc.UpdateVscroll(hWnd, yInc);
-		currY = -doc.vsi.nPos * doc.yStep;
+		currY = -doc.GetVSIpos() * doc.GetyStep();
+		SendMessage(hWndToolBar, TB_AUTOSIZE, 0, 0);
 		break;
 	case WM_HSCROLL:
 			switch (LOWORD(wParam)) 
@@ -222,22 +214,22 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 				xInc = 1; 
 				break;
 			case SB_PAGELEFT:
-				xInc = - (int)doc.hsi.nPage; 
+				xInc = -doc.GetxPage();
 				break;
 			case SB_PAGERIGHT:
-				xInc = (int)doc.hsi.nPage; 
+				xInc = doc.GetxPage(); 
 				break;
 			case SB_THUMBTRACK:
-				xInc = HIWORD(wParam) - doc.hsi.nPos;
-				break;
-				default: xInc = 0;
+				xInc = HIWORD(wParam) - doc.GetHSIpos();
+			break;
+			default: xInc = 0;
 			}
 			doc.UpdateHscroll(hWnd, xInc);
-			currX = -doc.hsi.nPos * doc.xStep;
+			currX = -doc.GetHSIpos() * doc.GetxStep();
+			SendMessage(hWndToolBar, TB_AUTOSIZE, 0, 0);
 			break;
 	case WM_NOTIFY:
 	{
-		//OnNotify(hWnd, wParam, lParam);
 		LPNMHDR pnmh = (LPNMHDR)lParam;
 		LPSTR pText;
 		if (pnmh->code == TTN_NEEDTEXT)
@@ -252,19 +244,25 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 				pText = "Лінія";
 				break;
 			case IDB_RECT:
-				pText = "Ïðÿìî";
+				pText = "Прямокутник";
 				break;
 			case IDB_ELLIPSE:
-				pText = "Åëë³ïñ";
+				pText = "Еліпс";
 				break;
 			case IDB_CUBE:
-				pText = "Êóá";
+				pText = "Куб";
 				break;
 			case IDB_CILINDER:
-				pText = "Öèë³íäð";
+				pText = "Циліндр";
 				break;
 			case IDB_PUNCKT:
-				pText = "Ïóíêòèðíà ë³í³ÿ";
+				pText = "Пуктирна лінія";
+				break;
+			case IDB_FILL:
+				pText = "Колір заливки";
+				break;
+			case IDB_CIRCUIT:
+				pText = "Колір контуру";
 				break;
 			default:
 				pText = "ToolBar";
@@ -289,7 +287,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     case WM_COMMAND:
         {
             int wmId = LOWORD(wParam);
-            // Ðàçîáðàòü âûáîð â ìåíþ:
+			// Разобрать выбор в меню:
             switch (wmId)
             {
 			case IDB_ELLIPSE:
@@ -364,18 +362,20 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 				obj_editor.StartReadFile(name);
 				InvalidateRect(hWnd, NULL, 1);
 				break;
+			case IDB_FILL:
 			case IDM_STDCOLOR:
 				if (ChooseColor(&ccs))
 				{
 					stdColor = ccs.rgbResult;
-					obj_editor.Reset(hWnd, wParam, hWndToolBar);
+					obj_editor.Reset(hWndToolBar);
 				}
 				break;
+			case IDB_CIRCUIT:
 			case IDM_PENCOLOR:
 				if (ChooseColor(&penCCS))
 				{
 					penColor = penCCS.rgbResult;
-					obj_editor.Reset(hWnd, wParam, hWndToolBar);
+					obj_editor.Reset(hWndToolBar);
 				}
 				break;
             case IDM_EXIT:
@@ -405,7 +405,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     return 0;
 }
 
-// Îáðàáîò÷èê ñîîáùåíèé äëÿ îêíà "Î ïðîãðàììå".
+// Обработчик сообщений для окна "О программе".
 INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 {
     UNREFERENCED_PARAMETER(lParam);
@@ -423,15 +423,4 @@ INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
         break;
     }
     return (INT_PTR)FALSE;
-}
-
-void OnSize(HWND hWnd, HWND hWndToolBar)
-{
-	RECT rc, rw;
-	if (hWndToolBar)
-	{
-		GetClientRect(hWnd, &rc);
-		GetWindowRect(hWndToolBar, &rw);
-		MoveWindow(hWndToolBar, 0, 0, rc.right - rc.left, rw.bottom - rw.top, FALSE);
-	}
 }

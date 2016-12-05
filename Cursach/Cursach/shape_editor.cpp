@@ -14,48 +14,48 @@ ShapeObjectEditor:: ~ShapeObjectEditor()
 void ShapeObjectEditor:: StartRombEditor(COLORREF brushColor, COLORREF peColor)
 {
 	if (pse)
-		delete pse;
+		pse = NULL;
 	pse = new RombEditor(brushColor,peColor);
 }
 
 void ShapeObjectEditor::StartLineEditor(COLORREF brushColor, COLORREF peColor)
 {
 	if (pse)
-		delete pse;
+		pse = NULL;
 	pse = new LineEditor(brushColor, peColor);
 }
 void ShapeObjectEditor::StartPuncktLineEditor(COLORREF brushColor, COLORREF peColor)
 {
 	if (pse)
-		delete pse;
+		pse = NULL;
 	pse = new PuncktLineEditor(brushColor, peColor);
 }
 
 void ShapeObjectEditor::StartCilinderEditor(COLORREF brushColor, COLORREF peColor)
 {
 	if (pse)
-		delete pse;
+		pse = NULL;
 	pse = new CilinderEditor(brushColor, peColor);
 }
 
 void ShapeObjectEditor::StartCubeEditor(COLORREF brushColor, COLORREF peColor)
 {
 	if (pse)
-		delete pse;
+		pse = NULL;
 	pse = new CubeEditor(brushColor, peColor);
 }
 
 void ShapeObjectEditor::StartRectEditor(COLORREF brushColor, COLORREF peColor)
 {
 	if (pse)
-		delete pse;
+		pse = NULL;
 	pse = new RectEditor(brushColor, peColor);
 }
 
 void ShapeObjectEditor::StartEllipseEditor(COLORREF brushColor, COLORREF peColor)
 {
 	if (pse)
-		delete pse;
+		pse = NULL;
 	pse = new EllipseEditor(brushColor, peColor);
 }
 
@@ -68,7 +68,7 @@ void ShapeObjectEditor::StartWriteFile(TCHAR* name)
 void ShapeObjectEditor::StartReadFile(TCHAR* name)
 {
 	if (pse)
-		delete pse;
+		pse = NULL;
 	pse = new ShapeEditor();
 	pse->ReadFromFile(name);
 }
@@ -117,23 +117,11 @@ void ShapeObjectEditor::PressButton(HWND hWnd)
 		pse->PressButton(hWnd);
 }
 
-void ShapeObjectEditor::Reset(HWND hWnd, WPARAM wParam,HWND hWndTool)
+void ShapeObjectEditor::Reset(HWND hWndTool)
 {
 	if (pse)
 		pse = NULL;
 
-	HMENU hMenu, hSubMenu;
-	hMenu = GetMenu(hWnd);
-	hSubMenu = GetSubMenu(hMenu, 1); //POPUP-меню Об'єкти
-	if ((HMENU)wParam == hSubMenu)
-	{
-		CheckMenuItem(hSubMenu, IDM_ROMB, MF_UNCHECKED);
-		CheckMenuItem(hSubMenu, IDM_LINE, MF_UNCHECKED);
-		CheckMenuItem(hSubMenu, IDM_RECT, MF_UNCHECKED);
-		CheckMenuItem(hSubMenu, IDM_ELLIPSE, MF_UNCHECKED); //позначити цей пункт
-		CheckMenuItem(hSubMenu, IDM_CUBE, MF_UNCHECKED);
-		CheckMenuItem(hSubMenu, IDM_CILINDER, MF_UNCHECKED);
-	}
 
 	SendMessage(hWndTool, TB_PRESSBUTTON, IDB_ROMB, false);
 	SendMessage(hWndTool, TB_PRESSBUTTON, IDB_LINE, false);
@@ -141,4 +129,5 @@ void ShapeObjectEditor::Reset(HWND hWnd, WPARAM wParam,HWND hWndTool)
 	SendMessage(hWndTool, TB_PRESSBUTTON, IDB_ELLIPSE, false);
 	SendMessage(hWndTool, TB_PRESSBUTTON, IDB_CUBE, false);
 	SendMessage(hWndTool, TB_PRESSBUTTON, IDB_CILINDER, false);
+	SendMessage(hWndTool, TB_PRESSBUTTON, IDB_PUNCKT, false);
 }

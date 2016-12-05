@@ -11,21 +11,27 @@ EllipseEditor::~EllipseEditor()
 {
 }
 
+/*
+	* функція орбробки повідомлення натиснення лівої клавіши миші
+	* xk - зміщення по х
+	* yk - зміщення по у
+	*/
 void EllipseEditor::OnLBup(HWND hWnd, int xk, int yk)
 {
+	//перевірка наявності місця у масиві
 	if (curr_length < MY_SHAPE_ARRAY_SIZE)
 	{
 		POINT pt;
 		GetCursorPos(&pt);
 		ScreenToClient(hWnd, &pt);
-		//PrintInFile("Елліпс", pt_start.x, pt_start.y, pt.x, pt.y);
 		pcshape[curr_length] = new EllipseShape();
-		pcshape[curr_length]->Set(pt_start.x, pt_start.y, pt.x, pt.y, brColor, penColor, xk, yk);
-		curr_length++;
-		InvalidateRect(hWnd, NULL, TRUE);
+		pcshape[curr_length]->Set(pt_start.x, pt_start.y, pt.x, pt.y, brColor, penColor, xk, yk);//ініціалізація змінної 
+		curr_length++;//збільшення лічильника елементів у массиві pcshape
+		InvalidateRect(hWnd, NULL, TRUE);//вікликається WM_PAINT
 	}
 }
 
+//функція орбробки повідомлення руху миші
 void EllipseEditor::OnMosuseMove(HWND hWnd)
 {
 	//Ellipse(hdc, xstart - (pt.x - xstart), ystart - (pt.y - ystart), pt.x, pt.y);
@@ -36,16 +42,23 @@ void EllipseEditor::OnMosuseMove(HWND hWnd)
 	SetROP2(hdc, R2_NOTXORPEN);
 	hPen = CreatePen(PS_DOT, 1, 0);
 	hPenOld = (HPEN)SelectObject(hdc, hPen);
+	
+	//замальовуємо стару фігуру
 	Ellipse(hdc, pt_start.x, pt_start.y, pt_old.x, pt_old.y);
+	
 	GetCursorPos(&pt);
 	ScreenToClient(hWnd, &pt);
 	pt_old = pt;
+
+	//малюється новий гумовий слід
 	Ellipse(hdc, pt_start.x, pt_start.y, pt_old.x, pt_old.y);
+	
 	SelectObject(hdc, hPenOld);
 	DeleteObject(hPen);
 	ReleaseDC(hWnd, hdc); //закриваємо контекст вікна
 }
 
+//позначає вибраний елемент у меню
 void EllipseEditor::OnInitMenuPopup(HWND hWnd, WPARAM wParam)
 {
 	HMENU hMenu, hSubMenu;
@@ -56,7 +69,7 @@ void EllipseEditor::OnInitMenuPopup(HWND hWnd, WPARAM wParam)
 		CheckMenuItem(hSubMenu, IDM_ROMB, MF_UNCHECKED);
 		CheckMenuItem(hSubMenu, IDM_LINE, MF_UNCHECKED);
 		CheckMenuItem(hSubMenu, IDM_RECT, MF_UNCHECKED);
-		CheckMenuItem(hSubMenu, IDM_ELLIPSE, MF_CHECKED); //позначити цей пункт
+		CheckMenuItem(hSubMenu, IDM_ELLIPSE, MF_CHECKED); 
 		CheckMenuItem(hSubMenu, IDM_CUBE, MF_UNCHECKED);
 		CheckMenuItem(hSubMenu, IDM_CILINDER, MF_UNCHECKED);
 		CheckMenuItem(hSubMenu, IDM_PUNKT, MF_UNCHECKED);
@@ -64,6 +77,7 @@ void EllipseEditor::OnInitMenuPopup(HWND hWnd, WPARAM wParam)
 
 }
 
+//позначає вибраний елемент на панелі інструментів 
 void EllipseEditor::PressButton(HWND hWnd)
 {
 	SendMessage(hWnd, TB_PRESSBUTTON, IDB_ROMB, false);

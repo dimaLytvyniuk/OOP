@@ -11,6 +11,7 @@ RectEditor::~RectEditor()
 {
 }
 
+//функція орбробки повідомлення руху миші
 void RectEditor::OnMosuseMove(HWND hWnd)
 {
 	POINT pt;
@@ -20,18 +21,30 @@ void RectEditor::OnMosuseMove(HWND hWnd)
 	SetROP2(hdc, R2_NOTXORPEN);
 	hPen = CreatePen(PS_DOT, 1, 0);
 	hPenOld = (HPEN)SelectObject(hdc, hPen);
+	
+	//замальовується стара фігура
 	Rectangle(hdc, pt_start.x , pt_start.y, pt_old.x, pt_old.y);
+	
 	GetCursorPos(&pt);
 	ScreenToClient(hWnd, &pt);
 	pt_old = pt;
+
+	//малюється новий гумовий слід
 	Rectangle(hdc, pt_start.x , pt_start.y, pt_old.x, pt_old.y);
+	
 	SelectObject(hdc, hPenOld);
 	DeleteObject(hPen);
 	ReleaseDC(hWnd, hdc); //закриваємо контекст вікна
 }
 
+/*
+	* функція орбробки повідомлення натиснення лівої клавіши миші
+	* xk - зміщення по х
+	* yk - зміщення по у
+	*/
 void RectEditor::OnLBup(HWND hWnd, int xk, int yk)
 {
+	//перевірка наявності місця у масиві
 	if (curr_length < MY_SHAPE_ARRAY_SIZE)
 	{
 		POINT pt;
@@ -39,13 +52,13 @@ void RectEditor::OnLBup(HWND hWnd, int xk, int yk)
 		ScreenToClient(hWnd, &pt);
 		//PrintInFile("Прямокутник", pt_start.x, pt_start.y, pt.x, pt.y);
 		pcshape[curr_length] = new RectShape();
-		pcshape[curr_length]->Set(pt_start.x , pt_start.y , pt_old.x, pt_old.y, brColor, penColor, xk, yk);
-		curr_length++;
-		InvalidateRect(hWnd, NULL, TRUE);
+		pcshape[curr_length]->Set(pt_start.x , pt_start.y , pt_old.x, pt_old.y, brColor, penColor, xk, yk);//ініціалізація змінної 
+		curr_length++;//збільшення лічильника елементів у массиві pcshape
+		InvalidateRect(hWnd, NULL, TRUE);//вікликається WM_PAINT
 	}
 }
 
-
+//позначає вибраний елемент у меню
 void RectEditor::OnInitMenuPopup(HWND hWnd, WPARAM wParam)
 {
 	HMENU hMenu, hSubMenu;
@@ -63,6 +76,7 @@ void RectEditor::OnInitMenuPopup(HWND hWnd, WPARAM wParam)
 	}
 }
 
+//позначає вибраний елемент на панелі інструментів 
 void RectEditor::PressButton(HWND hWnd)
 {
 	SendMessage(hWnd, TB_PRESSBUTTON, IDB_ROMB, false);

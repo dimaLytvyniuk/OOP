@@ -18,14 +18,12 @@ class ShapeEditor :
 	public Editor
 {
 protected:
-	//int xstart, ystart, xend, yend;
-	static int curr_length;
-	static Shape *pcshape[MY_SHAPE_ARRAY_SIZE];
-	POINT pt_old;
-	POINT pt_start;
-	char* name = "data_types.txt";
-	COLORREF brColor,
-		penColor;
+	static int curr_length;//поточна довжина масиву pcshape
+	static Shape *pcshape[MY_SHAPE_ARRAY_SIZE];//масив фігур 
+	POINT pt_old;//початкові координати
+	POINT pt_start;//кінцеві координати
+	COLORREF brColor,//колір заливки
+		penColor;//колір контуру
 public:
 	ShapeEditor(COLORREF,COLORREF);
 	ShapeEditor();
@@ -33,9 +31,9 @@ public:
 	void OnLBup(HWND, int xk, int yk);
 	void OnMosuseMove(HWND);
 	void OnPaint(HWND,HDC,int xk, int yk);
-	void PrintInFile(char *);
-	void ReadFromFile(char*);
-	virtual void OnInitMenuPopup(HWND, WPARAM);
-	virtual void PressButton(HWND);
+	void PrintInFile(char *);//записує у файл масив pcshape
+	void ReadFromFile(char*);//зчитує з файлу у масив pcshape
+	virtual void OnInitMenuPopup(HWND, WPARAM);//позначає вибраний елемент у меню
+	virtual void PressButton(HWND);//позначає вибраний елемент на панелі інструментів 
 };
 #endif !defined(SHAPEDITOR_H)

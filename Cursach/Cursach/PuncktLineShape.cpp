@@ -12,6 +12,11 @@ PuncktLineShape::~PuncktLineShape()
 {
 }
 
+/*
+* малює об'єкт shape
+* xk - зміщення по х
+* yk - зміщення по у
+*/
 void PuncktLineShape::Show(HDC hdc, int xk, int yk)
 {
 	HPEN hPenOld, hPen;

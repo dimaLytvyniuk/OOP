@@ -12,6 +12,11 @@ CubeShape::~CubeShape()
 {
 }
 
+/*
+* малює об'єкт shape
+* xk - зміщення по х
+* yk - зміщення по у
+*/
 void CubeShape::Show(HDC hdc, int xk, int yk)
 {
 	HPEN hPenOld, hPen;
@@ -23,6 +28,7 @@ void CubeShape::Show(HDC hdc, int xk, int yk)
 	hBrush = (HBRUSH)CreateSolidBrush(brColor);
 	hBrushOld = (HBRUSH)SelectObject(hdc, hBrush);
 
+	//прорахунок координат фігури
 	int xs_1 = xs1 + xk,
 		xs_2 = xs2 + xk,
 		ys_1 = ys1 + yk,

@@ -10,10 +10,10 @@ using namespace std;
 class Editor
 {
 public:
-	virtual void OnLBdown(HWND) = 0;
-	virtual void OnLBup(HWND, int xk, int yk) = 0;
-	virtual void OnMosuseMove(HWND) = 0;
-	virtual void OnPaint(HWND,HDC, int xk, int yk) = 0;
+	virtual void OnLBdown(HWND) = 0;//функція орбробки повідомлення натиснення лівої клавіши миші
+	virtual void OnLBup(HWND, int xk, int yk) = 0;//функція орбробки повідомлення відпусксання лівої клавіши миші
+	virtual void OnMosuseMove(HWND) = 0;//функція орбробки повідомлення руху миші
+	virtual void OnPaint(HWND,HDC, int xk, int yk) = 0;//функція малювання фігур
 };
 #endif !defined(EDITOR_H)
 

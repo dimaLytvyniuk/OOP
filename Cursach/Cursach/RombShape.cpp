@@ -12,6 +12,11 @@ RombShape::~RombShape()
 {
 }
 
+/*
+* малює об'єкт shape
+* xk - зміщення по х
+* yk - зміщення по у
+*/
 void RombShape::Show(HDC hdc, int xk, int yk)
 {
 	HPEN hPenOld, hPen;
@@ -24,6 +29,8 @@ void RombShape::Show(HDC hdc, int xk, int yk)
 	hBrushOld = (HBRUSH)SelectObject(hdc, hBrush);
 
 	POINT pt_re[4];
+
+	//прорахунок координат фігури
 	int xs_1 = xs1 + xk,
 		xs_2 = xs2 + xk,
 		ys_1 = ys1 + yk,

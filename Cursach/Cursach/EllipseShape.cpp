@@ -12,6 +12,11 @@ EllipseShape::~EllipseShape()
 {
 }
 
+/*
+* малює об'єкт shape
+* xk - зміщення по х
+* yk - зміщення по у
+*/
 void EllipseShape::Show(HDC hdc, int xk, int yk)
 {
 	HPEN hPenOld, hPen;
