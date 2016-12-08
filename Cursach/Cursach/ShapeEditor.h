@@ -36,5 +36,6 @@ public:
 	virtual void OnInitMenuPopup(HWND, WPARAM);//позначає вибраний елемент у меню
 	virtual void PressButton(HWND);//позначає вибраний елемент на панелі інструментів
 	void OverMeesage();//повідомлення про закінчення місця у масиві pcshape
+	void CreateNewScene();//створення нової сцени
 };
 #endif !defined(SHAPEDITOR_H)

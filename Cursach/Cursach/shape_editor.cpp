@@ -190,3 +190,12 @@ void ShapeObjectEditor::Reset(HWND hWndTool)
 	SendMessage(hWndTool, TB_PRESSBUTTON, IDB_CILINDER, false);
 	SendMessage(hWndTool, TB_PRESSBUTTON, IDB_PUNCKT, false);
 }
+
+//створення нової сцени
+void ShapeObjectEditor::CreateNewScene()
+{
+	if (!pse)
+		pse = new ShapeEditor();
+
+	pse->CreateNewScene();
+}

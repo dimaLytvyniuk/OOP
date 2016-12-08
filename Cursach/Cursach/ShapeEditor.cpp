@@ -95,6 +95,7 @@ void ShapeEditor::ReadFromFile(char* name)
 			*next_token = NULL,
 			*p,
 			*delimiter = "\t";
+		bool fl = true;
 
 		//видалення елементів з pcshape
 		for (int i = 0; i < curr_length;i++)
@@ -141,33 +142,39 @@ void ShapeEditor::ReadFromFile(char* name)
 				}
 				else
 				{
-					
+					fl = false;
 				}
 
 				p = strtok_s(NULL, delimiter, &next_token);
 
-				//зчитування координат та зміщення
-				while (p != NULL && c_dots < 6)
+				if (fl)
 				{
-					dots[c_dots] = atoi(p);
-					c_dots++;
-					p = strtok_s(NULL, delimiter, &next_token);
-				}
+					//зчитування координат та зміщення
+					while (p != NULL && c_dots < 6)
+					{
+						dots[c_dots] = atoi(p);
+						c_dots++;
+						p = strtok_s(NULL, delimiter, &next_token);
+					}
 
-				if (c_dots == 6)
-				{
-					pcshape[n]->Set(dots[0], dots[1], dots[2], dots[3],dots[4],dots[5],0,0);
-					c_dots = 0;
+					if (c_dots == 6)
+					{
+						pcshape[n]->Set(dots[0], dots[1], dots[2], dots[3], dots[4], dots[5], 0, 0);
+						c_dots = 0;
+						n++;
+					}
 				}
 				else
-				{
+					fl = true;
 
-				}
-				n++;
 			}
 		}
 		curr_length = n;
 		file.close();
+	}
+	else
+	{
+		MessageBox(0, "Не вдалося відкрити файл", "Курсова робота", 0);
 	}
 }
 
@@ -186,4 +193,18 @@ void ShapeEditor::PressButton(HWND hWnd)
 void ShapeEditor::OverMeesage()
 {
 	MessageBox(0, "Закінчилось місце для фігур", "Курсова робота", 0);
+}
+
+//створення нової сцени
+void ShapeEditor::CreateNewScene()
+{
+	//видалення елементів з pcshape
+	for (int i = 0; i < curr_length;i++)
+	{
+		pcshape[i] = NULL;
+	}
+
+	curr_length = 0;
+
+
 }

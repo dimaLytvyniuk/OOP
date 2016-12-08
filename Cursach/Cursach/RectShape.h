@@ -1,7 +1,7 @@
 #pragma once
 #include "Shape.h"
 class RectShape :
-	public virtual Shape
+	public Shape
 {
 public:
 	RectShape();

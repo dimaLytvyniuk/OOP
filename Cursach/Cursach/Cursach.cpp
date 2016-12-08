@@ -186,6 +186,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		ReleaseDC(hWnd, hDc);
 		break;
 	case WM_VSCROLL:
+		//обробник повідомлень вертикального скролінгу
 		switch (LOWORD(wParam)) {
 		case SB_LINEUP:
 			yInc = -1; 
@@ -209,6 +210,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		SendMessage(hWndToolBar, TB_AUTOSIZE, 0, 0);
 		break;
 	case WM_HSCROLL:
+		//обробник повідомлень горизонтального скролінгу
 			switch (LOWORD(wParam)) 
 			{
 			case SB_LINELEFT:
@@ -277,16 +279,16 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		break;
 	}
 	case WM_LBUTTONDOWN:
-		obj_editor.OnLBdown(hWnd);
+		obj_editor.OnLBdown(hWnd);//функція орбробки повідомлення натиснення лівої клавіши миші
 		break;
 	case WM_LBUTTONUP:
-		obj_editor.OnLBup(hWnd, currX, currY);
+		obj_editor.OnLBup(hWnd, currX, currY);//функція орбробки повідомлення відпусксання лівої клавіши миші
 		break;
 	case WM_MOUSEMOVE:
-		obj_editor.OnMosuseMove(hWnd);
+		obj_editor.OnMosuseMove(hWnd);//функція орбробки повідомлення руху миші
 		break;
 	case WM_INITMENUPOPUP:
-		obj_editor.OninitMenuPopup(hWnd, wParam);
+		obj_editor.OninitMenuPopup(hWnd, wParam);//позначає вибраний елемент у меню
 		break;
     case WM_COMMAND:
         {
@@ -295,71 +297,73 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             switch (wmId)
             {
 			case IDB_ELLIPSE:
-				obj_editor.StartEllipseEditor(stdColor,penColor);
-				obj_editor.PressButton(hWndToolBar);
+				obj_editor.StartEllipseEditor(stdColor,penColor);//створює новий об'єкт EllipseEditor
+				obj_editor.PressButton(hWndToolBar);//позначає вибраний елемент на панелі інструментів 
 				break;
 			case IDB_RECT:
-				obj_editor.StartRectEditor(stdColor, penColor);
+				obj_editor.StartRectEditor(stdColor, penColor);//створює новий об'єкт RectEditor
 				obj_editor.PressButton(hWndToolBar);
 				break;
 			case IDB_LINE:
-				obj_editor.StartLineEditor(stdColor, penColor);
+				obj_editor.StartLineEditor(stdColor, penColor);//створює новий об'єкт LineEditor
 				obj_editor.PressButton(hWndToolBar);
 				break;
 			case IDB_CUBE:
-				obj_editor.StartCubeEditor(stdColor, penColor);
+				obj_editor.StartCubeEditor(stdColor, penColor);//створює новий об'єкт CubeEditor
 				obj_editor.PressButton(hWndToolBar);
 				break;
 			case IDB_PUNCKT:
-				obj_editor.StartPuncktLineEditor(stdColor, penColor);
+				obj_editor.StartPuncktLineEditor(stdColor, penColor);//створює новий об'єкт PuncktLineEditor
 				obj_editor.PressButton(hWndToolBar);
 				break;
 			case IDB_ROMB:
-				obj_editor.StartRombEditor(stdColor, penColor);
+				obj_editor.StartRombEditor(stdColor, penColor);//створює новий об'єкт RombEditor
 				obj_editor.PressButton(hWndToolBar);
 				break;
 			case IDB_CILINDER:
-				obj_editor.StartCilinderEditor(stdColor, penColor);
+				obj_editor.StartCilinderEditor(stdColor, penColor);//створює новий об'єкт CilinderEditor
 				obj_editor.PressButton(hWndToolBar);
 				break;
 			case IDM_LINE:
-				obj_editor.StartLineEditor(stdColor, penColor);
+				obj_editor.StartLineEditor(stdColor, penColor);//створює новий об'єкт LineEditor
 				obj_editor.PressButton(hWndToolBar);
 				break;
 			case IDM_RECT:
-				obj_editor.StartRectEditor(stdColor, penColor);
+				obj_editor.StartRectEditor(stdColor, penColor);//створює новий об'єкт RectEditor
 				obj_editor.PressButton(hWndToolBar);
 				break;
 			case IDM_ELLIPSE:
-				obj_editor.StartEllipseEditor(stdColor, penColor);
+				obj_editor.StartEllipseEditor(stdColor, penColor);//створює новий об'єкт EllipseEditor
 				obj_editor.PressButton(hWndToolBar);
 				break;
 			case IDM_CUBE:
-				obj_editor.StartCubeEditor(stdColor, penColor);
+				obj_editor.StartCubeEditor(stdColor, penColor);//створює новий об'єкт CubeEditor
 				obj_editor.PressButton(hWndToolBar);
 				break;
 			case IDM_PUNKT:
-				obj_editor.StartPuncktLineEditor(stdColor, penColor);
+				obj_editor.StartPuncktLineEditor(stdColor, penColor);//створює новий об'єкт PuncktLineEditor
 				obj_editor.PressButton(hWndToolBar);
 				break;
 			case IDM_ROMB:
-				obj_editor.StartRombEditor(stdColor, penColor);
+				obj_editor.StartRombEditor(stdColor, penColor);//створює новий об'єкт RombEditor
 				obj_editor.PressButton(hWndToolBar);
 				break;
 			case IDM_CILINDER:
-				obj_editor.StartCilinderEditor(stdColor, penColor);
+				obj_editor.StartCilinderEditor(stdColor, penColor);//створює новий об'єкт CilinderEditor
 				obj_editor.PressButton(hWndToolBar);
 				break;
             case IDM_ABOUT:
                 DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
                 break;
 			case IDM_SAVEFILE:
+				//викликає діалогове вікно запису у файл
 				file.lpstrTitle = _T("Открыть файл для записи");
 				file.Flags = OFN_NOTESTFILECREATE;
 				if (!GetSaveFileName(&file)) return 1;
 				obj_editor.StartWriteFile(name);
 				break;
 			case IDM_OPENFILE:
+				//викликає дфалогове вікно зчитування з файлу
 				file.lpstrTitle = _T("Открыть файл для чтения");
 				file.Flags = OFN_HIDEREADONLY;
 				if (!GetOpenFileName(&file)) return 1;
@@ -368,6 +372,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 				break;
 			case IDB_FILL:
 			case IDM_STDCOLOR:
+				//викликає діалогове вікно вибіру кольору заливки
 				if (ChooseColor(&ccs))
 				{
 					stdColor = ccs.rgbResult;
@@ -376,11 +381,17 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 				break;
 			case IDB_CIRCUIT:
 			case IDM_PENCOLOR:
+				//викликає діалогове вікно вибіру кольору контуру
 				if (ChooseColor(&penCCS))
 				{
 					penColor = penCCS.rgbResult;
 					obj_editor.Reset(hWndToolBar);
 				}
+				break;
+			case IDM_NEW:
+				obj_editor.CreateNewScene();
+				obj_editor.Reset(hWndToolBar);
+				InvalidateRect(hWnd, NULL, TRUE);
 				break;
             case IDM_EXIT:
                 DestroyWindow(hWnd);
@@ -392,6 +403,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         break;
     case WM_PAINT:
         {
+			//малює фігури
 			PAINTSTRUCT ps;
 			HDC hdc;
 

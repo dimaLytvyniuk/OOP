@@ -31,5 +31,6 @@ class ShapeObjectEditor
 		void OnPaint(HWND,HDC, int xk, int yk);//функція малювання фігур
 		void OninitMenuPopup(HWND, WPARAM);//позначає вибраний елемент у меню
 		void PressButton(HWND);//позначає вибраний елемент на панелі інструментів 
+		void CreateNewScene();//створення нової сцени
 };
 
