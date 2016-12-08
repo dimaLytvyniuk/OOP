@@ -12,7 +12,12 @@ RombShape::~RombShape()
 {
 }
 
-void RombShape::Show(HDC hdc)
+/*
+* малює об'єкт shape
+* xk - зміщення по х
+* yk - зміщення по у
+*/
+void RombShape::Show(HDC hdc, int xk, int yk)
 {
 	HPEN hPenOld, hPen;
 	HBRUSH hBrush, hBrushOld;
@@ -24,19 +29,25 @@ void RombShape::Show(HDC hdc)
 	hBrushOld = (HBRUSH)SelectObject(hdc, hBrush);
 
 	POINT pt_re[4];
-	int xs_A = xs1 - (xs2 - xs1),
-		ys_A = ys2,
-		xs_B = xs1,
-		ys_B = ys1 + ((ys2 - ys1)* 2);
+
+	//прорахунок координат фігури
+	int xs_1 = xs1 + xk,
+		xs_2 = xs2 + xk,
+		ys_1 = ys1 + yk,
+		ys_2 = ys2 + yk,
+		xs_A = xs_1 - (xs_2 - xs_1),
+		ys_A = ys_2,
+		xs_B = xs_1,
+		ys_B = ys_1 + ((ys_2 - ys_1)* 2);
 
 	pt_re[0].x = xs_A;
 	pt_re[1].x = xs_B;
-	pt_re[2].x = xs2;
-	pt_re[3].x = xs1;
+	pt_re[2].x = xs_2;
+	pt_re[3].x = xs_1;
 	pt_re[0].y = ys_A;
 	pt_re[1].y = ys_B;
-	pt_re[2].y = ys2;
-	pt_re[3].y = ys1;
+	pt_re[2].y = ys_2;
+	pt_re[3].y = ys_1;
 	Polygon(hdc, pt_re, 4);
 
 	SelectObject(hdc, hPenOld);

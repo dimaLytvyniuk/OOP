@@ -6,7 +6,7 @@ class CubeEditor :
 public:
 	CubeEditor(COLORREF,COLORREF);
 	~CubeEditor();
-	void OnLBup(HWND hWnd);
+	void OnLBup(HWND hWnd, int xk, int yk);
 	void OnInitMenuPopup(HWND hWnd, WPARAM wParam);
 	void PressButton(HWND hWnd);
 	void OnMosuseMove(HWND hWnd);

@@ -11,6 +11,7 @@ RombEditor::~RombEditor()
 {
 }
 
+//позначає вибраний елемент у меню
 void RombEditor::OnInitMenuPopup(HWND hWnd, WPARAM wParam)
 {
 	HMENU hMenu, hSubMenu;
@@ -26,8 +27,10 @@ void RombEditor::OnInitMenuPopup(HWND hWnd, WPARAM wParam)
 		CheckMenuItem(hSubMenu, IDM_CILINDER, MF_UNCHECKED);
 		CheckMenuItem(hSubMenu, IDM_PUNKT, MF_UNCHECKED);
 	}
+
 }
 
+//позначає вибраний елемент на панелі інструментів 
 void RombEditor::PressButton(HWND hWnd)
 {
 	SendMessage(hWnd, TB_PRESSBUTTON, IDB_ROMB, true);
@@ -39,8 +42,14 @@ void RombEditor::PressButton(HWND hWnd)
 	SendMessage(hWnd, TB_PRESSBUTTON, IDB_PUNCKT, false);
 }
 
-void RombEditor::OnLBup(HWND hWnd)
+/*
+	* функція орбробки повідомлення натиснення лівої клавіши миші
+	* xk - зміщення по х
+	* yk - зміщення по у
+	*/
+void RombEditor::OnLBup(HWND hWnd, int xk, int yk)
 {
+	//перевірка наявності місця у масиві
 	if (curr_length < MY_SHAPE_ARRAY_SIZE)
 	{
 		POINT pt;
@@ -48,17 +57,23 @@ void RombEditor::OnLBup(HWND hWnd)
 		ScreenToClient(hWnd, &pt);
 		//PrintInFile("Ромб", pt_start.x, pt_start.y, pt.x, pt.y);
 		pcshape[curr_length] = new RombShape();
-		pcshape[curr_length]->Set(pt_start.x, pt_start.y, pt_old.x, pt_old.y, brColor, penColor);
-		curr_length++;
-		InvalidateRect(hWnd, NULL, TRUE);
+		pcshape[curr_length]->Set(pt_start.x, pt_start.y, pt_old.x, pt_old.y, brColor, penColor, xk, yk);//ініціалізація змінної 
+		curr_length++;//збільшення лічильника елементів у массиві pcshape
 	}
+	else
+		OverMeesage();
+
+	InvalidateRect(hWnd, NULL, TRUE);//вікликається WM_PAINT
 }
 
+//функція орбробки повідомлення руху миші
 void RombEditor::OnMosuseMove(HWND hWnd)
 {
 	POINT pt;
 	HPEN hPenOld, hPen;
 	HDC hdc;
+
+	//прорахунок координат фігури, яку треба замалювати
 	int xs_A = pt_start.x - (pt_old.x - pt_start.x),
 		xs_B = pt_start.x,
 		ys_A = pt_old.y,
@@ -69,6 +84,7 @@ void RombEditor::OnMosuseMove(HWND hWnd)
 	hPen = CreatePen(PS_DOT, 1, 0);
 	hPenOld = (HPEN)SelectObject(hdc, hPen);
 
+	//замальовується стара фігура
 	MoveToEx(hdc, pt_start.x, pt_start.y, NULL);
 	LineTo(hdc, xs_A, ys_A);
 	LineTo(hdc, xs_B, ys_B);
@@ -80,12 +96,13 @@ void RombEditor::OnMosuseMove(HWND hWnd)
 	ScreenToClient(hWnd, &pt);
 	pt_old = pt;
 
+	//прорахунок координат фігури, яку треба намалювати
 	xs_A = pt_start.x - (pt_old.x - pt_start.x);
 	xs_B = pt_start.x;
 	ys_A = pt_old.y;
 	ys_B = pt_start.y + ((pt_old.y - pt_start.y) * 2);
 
-
+	//малюється новий гумовий слід
 	MoveToEx(hdc, pt_start.x, pt_start.y, NULL);
 	LineTo(hdc, xs_A, ys_A);
 	LineTo(hdc, xs_B, ys_B);

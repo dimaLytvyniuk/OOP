@@ -7,6 +7,6 @@ class CubeShape :
 public:
 	CubeShape();
 	~CubeShape();
-	void Show(HDC);
+	void Show(HDC, int xk, int yk);
 };
 

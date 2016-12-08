@@ -12,7 +12,12 @@ EllipseShape::~EllipseShape()
 {
 }
 
-void EllipseShape::Show(HDC hdc)
+/*
+* малює об'єкт shape
+* xk - зміщення по х
+* yk - зміщення по у
+*/
+void EllipseShape::Show(HDC hdc, int xk, int yk)
 {
 	HPEN hPenOld, hPen;
 	HBRUSH hBrush, hBrushOld;
@@ -23,7 +28,7 @@ void EllipseShape::Show(HDC hdc)
 	hBrush = (HBRUSH)CreateSolidBrush(brColor);
 	hBrushOld = (HBRUSH)SelectObject(hdc, hBrush);
 
-	Ellipse(hdc, xs1, ys1, xs2, ys2);
+	Ellipse(hdc, xs1 + xk, ys1 + yk, xs2 + xk, ys2 + yk);
 
 	SelectObject(hdc, hPenOld);
 	DeleteObject(hPen);

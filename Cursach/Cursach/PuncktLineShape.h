@@ -6,6 +6,6 @@ class PuncktLineShape :
 public:
 	PuncktLineShape();
 	~PuncktLineShape();
-	void Show(HDC);
+	void Show(HDC, int xk, int yk);
 };
 

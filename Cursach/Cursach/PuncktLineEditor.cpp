@@ -12,6 +12,7 @@ PuncktLineEditor::~PuncktLineEditor()
 {
 }
 
+//позначає вибраний елемент у меню
 void PuncktLineEditor::OnInitMenuPopup(HWND hWnd, WPARAM wParam)
 {
 	HMENU hMenu, hSubMenu;
@@ -29,6 +30,7 @@ void PuncktLineEditor::OnInitMenuPopup(HWND hWnd, WPARAM wParam)
 	}
 }
 
+//позначає вибраний елемент на панелі інструментів 
 void PuncktLineEditor::PressButton(HWND hWnd)
 {
 	SendMessage(hWnd, TB_PRESSBUTTON, IDB_ROMB, false);
@@ -40,8 +42,14 @@ void PuncktLineEditor::PressButton(HWND hWnd)
 	SendMessage(hWnd, TB_PRESSBUTTON, IDB_PUNCKT, true);
 }
 
-void PuncktLineEditor::OnLBup(HWND hWnd)
+/*
+	* функція орбробки повідомлення натиснення лівої клавіши миші
+	* xk - зміщення по х
+	* yk - зміщення по у
+	*/
+void PuncktLineEditor::OnLBup(HWND hWnd, int xk, int yk)
 {
+	//перевірка наявності місця у масиві
 	if (curr_length < MY_SHAPE_ARRAY_SIZE)
 	{
 		POINT pt;
@@ -49,8 +57,11 @@ void PuncktLineEditor::OnLBup(HWND hWnd)
 		ScreenToClient(hWnd, &pt);
 		//PrintInFile("Пунктирна лінія", pt_start.x, pt_start.y, pt.x, pt.y);
 		pcshape[curr_length] = new PuncktLineShape();
-		pcshape[curr_length]->Set(pt_start.x, pt_start.y, pt.x, pt.y, brColor, penColor);
-		curr_length++;
-		InvalidateRect(hWnd, NULL, TRUE);
+		pcshape[curr_length]->Set(pt_start.x, pt_start.y, pt.x, pt.y, brColor, penColor, xk, yk);//ініціалізація змінної 
+		curr_length++;//збільшення лічильника елементів у массиві pcshape
 	}
+	else
+		OverMeesage();
+
+	InvalidateRect(hWnd, NULL, TRUE);//вікликається WM_PAINT
 }

@@ -6,6 +6,6 @@ class CilinderShape :
 public:
 	CilinderShape();
 	~CilinderShape();
-	void Show(HDC);
+	void Show(HDC,int xk, int yk);
 };
 

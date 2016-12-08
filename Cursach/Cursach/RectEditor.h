@@ -6,9 +6,8 @@ class RectEditor :
 public:
 	RectEditor(COLORREF, COLORREF);
 	~RectEditor();
-	void OnLBup(HWND);
+	void OnLBup(HWND, int xk, int yk);
 	void OnMosuseMove(HWND);
-	//void OnPaint(HWND);
 	void OnInitMenuPopup(HWND, WPARAM);
 	void PressButton(HWND);
 };
