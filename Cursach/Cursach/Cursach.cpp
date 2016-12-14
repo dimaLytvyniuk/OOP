@@ -161,14 +161,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		file.nMaxFile = 256;
 		file.lpstrInitialDir = _T(".\\");
 		file.lpstrDefExt = _T("txt");
-
+		
 		//ініціалізація ccs
 		ccs.lStructSize = sizeof(CHOOSECOLOR);
 		ccs.hwndOwner = hWnd;
 		ccs.rgbResult = stdColor;
 		ccs.Flags = CC_RGBINIT | CC_FULLOPEN;
 		ccs.lpCustColors = (LPDWORD)acrCustClr;
-
+		
 		//ініціалізація penCCS
 		penCCS.lStructSize = sizeof(CHOOSECOLOR);
 		penCCS.hwndOwner = hWnd;
