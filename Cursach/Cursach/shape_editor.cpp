@@ -19,7 +19,10 @@ ShapeObjectEditor:: ~ShapeObjectEditor()
 void ShapeObjectEditor:: StartRombEditor(COLORREF brushColor, COLORREF peColor)
 {
 	if (pse)
-		pse = NULL;
+	{
+		delete pse;
+		pse = nullptr;
+	}
 	pse = new RombEditor(brushColor,peColor);
 }
 
@@ -31,7 +34,10 @@ void ShapeObjectEditor:: StartRombEditor(COLORREF brushColor, COLORREF peColor)
 void ShapeObjectEditor::StartLineEditor(COLORREF brushColor, COLORREF peColor)
 {
 	if (pse)
-		pse = NULL;
+	{
+		delete pse;
+		pse = nullptr;
+	}
 	pse = new LineEditor(brushColor, peColor);
 }
 
@@ -43,7 +49,10 @@ void ShapeObjectEditor::StartLineEditor(COLORREF brushColor, COLORREF peColor)
 void ShapeObjectEditor::StartPuncktLineEditor(COLORREF brushColor, COLORREF peColor)
 {
 	if (pse)
-		pse = NULL;
+	{
+		delete pse;
+		pse = nullptr;
+	}
 	pse = new PuncktLineEditor(brushColor, peColor);
 }
 
@@ -55,7 +64,10 @@ void ShapeObjectEditor::StartPuncktLineEditor(COLORREF brushColor, COLORREF peCo
 void ShapeObjectEditor::StartCilinderEditor(COLORREF brushColor, COLORREF peColor)
 {
 	if (pse)
-		pse = NULL;
+	{
+		delete pse;
+		pse = nullptr;
+	}
 	pse = new CilinderEditor(brushColor, peColor);
 }
 
@@ -67,7 +79,10 @@ void ShapeObjectEditor::StartCilinderEditor(COLORREF brushColor, COLORREF peColo
 void ShapeObjectEditor::StartCubeEditor(COLORREF brushColor, COLORREF peColor)
 {
 	if (pse)
-		pse = NULL;
+	{
+		delete pse;
+		pse = nullptr;
+	}
 	pse = new CubeEditor(brushColor, peColor);
 }
 
@@ -79,7 +94,10 @@ void ShapeObjectEditor::StartCubeEditor(COLORREF brushColor, COLORREF peColor)
 void ShapeObjectEditor::StartRectEditor(COLORREF brushColor, COLORREF peColor)
 {
 	if (pse)
-		pse = NULL;
+	{
+		delete pse;
+		pse = nullptr;
+	}
 	pse = new RectEditor(brushColor, peColor);
 }
 
@@ -91,7 +109,10 @@ void ShapeObjectEditor::StartRectEditor(COLORREF brushColor, COLORREF peColor)
 void ShapeObjectEditor::StartEllipseEditor(COLORREF brushColor, COLORREF peColor)
 {
 	if (pse)
-		pse = NULL;
+	{
+		delete pse;
+		pse = nullptr;
+	}
 	pse = new EllipseEditor(brushColor, peColor);
 }
 
@@ -112,7 +133,10 @@ void ShapeObjectEditor::StartWriteFile(TCHAR* name)
 void ShapeObjectEditor::StartReadFile(TCHAR* name)
 {
 	if (pse)
-		pse = NULL;
+	{
+		delete pse;
+		pse = nullptr;
+	}
 	pse = new ShapeEditor();
 	pse->ReadFromFile(name);
 }
@@ -179,7 +203,10 @@ void ShapeObjectEditor::PressButton(HWND hWnd)
 void ShapeObjectEditor::Reset(HWND hWndTool)
 {
 	if (pse)
-		pse = NULL;
+	{
+		delete pse;
+		pse = nullptr;
+	}
 
 
 	SendMessage(hWndTool, TB_PRESSBUTTON, IDB_ROMB, false);

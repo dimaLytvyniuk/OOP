@@ -206,6 +206,8 @@
     <ResourceCompile Include="Cursach.rc" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\fill.bmp" />
+    <Image Include="..\pen.bmp" />
     <Image Include="bitmap1.bmp" />
     <Image Include="Cursach.ico" />
     <Image Include="small.ico" />
